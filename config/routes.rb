@@ -1,8 +1,12 @@
 Stui::Application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => redirect("/users/sign_in")
   devise_for :users
-  resources :users
+  resources :subscriptions
+  resources :users do
+    # resources :subscriptions
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

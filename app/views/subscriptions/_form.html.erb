@@ -1,0 +1,16 @@
+<%= form_for(@subscription) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :pioneer_id %><br />
+    <%= f.text_field :pioneer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :notify %><br />
+    <%= f.text_field :notify %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
