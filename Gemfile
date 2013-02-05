@@ -8,6 +8,9 @@ gem 'rails', '3.2.11'
 # gem 'sqlite3'
 gem "mongoid", ">= 3.0.21"
 gem "devise", ">= 2.2.3"
+gem "will_paginate_mongoid", "1.1.0"
+gem "quiet_assets", "1.0.1"
+gem "cancan", "1.6.9"
 
 # Gems used only for assets and not required
 # in production environments by default.
