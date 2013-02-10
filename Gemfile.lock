@@ -128,9 +128,9 @@ PLATFORMS
 DEPENDENCIES
   cancan (= 1.6.9)
   coffee-rails (~> 3.2.1)
-  devise (>= 2.2.3)
+  devise (= 2.2.3)
   jquery-rails
-  mongoid (>= 3.0.21)
+  mongoid (= 3.0.21)
   quiet_assets (= 1.0.1)
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
