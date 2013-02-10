@@ -9,5 +9,5 @@
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'Anton Sizov', :admin => true, :email => 'a.sysoff@gmail.com', :password => 'administrator', :password_confirmation => 'administrator'
 puts 'New user created: ' << user.name
-user2 = User.create! :name => 'iKatod', :email => 'ikatod@gmail.com', :password => 'ikatodikatod', :password_confirmation => 'ikatodikatod'
+user2 = User.create! :name => 'iKatod', :admin => true, :email => 'ikatod@gmail.com', :password => 'ikatodikatod', :password_confirmation => 'ikatodikatod'
 puts 'New user created: ' << user2.name
