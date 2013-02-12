@@ -1,9 +1,13 @@
 
 class PagesController < ApplicationController
 
-  before_filter :authenticate_user!
 
   def home
-    @users = User.all
+    if user_signed_in?
+      @users = User.all
+    else
+      render 'greeting'
+    end
   end
+
 end
