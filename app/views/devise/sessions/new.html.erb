@@ -1,23 +1,23 @@
-<div class="login-form">
-<h2>Sign in</h2>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+:html => { :class => "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading">Sign in</h2>
+  <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= f.email_field :email, :autofocus => true, :placeholder => "Your e-mail",
+  :class => "input-block-level" %>
 
-  <div class="clearfix">
-  <%= f.email_field :email, :autofocus => true, :placeholder => "Your e-mail" %></div>
-
-  <div class="clearfix">
-  <%= f.password_field :password, :placeholder => "Your password" %></div>
+  <%= f.password_field :password, :placeholder => "Your password",
+  :class => "input-block-level" %>
 
   <% if devise_mapping.rememberable? -%>
     <label class="checkbox">
-    <%= f.check_box :remember_me %>
+    <%= f.check_box :remember_me, {checked: true} %>
 	<%= f.label :remember_me %>
 	</label>
   <% end -%>
 
   <div><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+  <p></p>
+  <div><%= render "devise/shared/links" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
-</div>
