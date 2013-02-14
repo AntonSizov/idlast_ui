@@ -74,21 +74,25 @@
     <div class="container">
       <div class="row">
 		<% if user_signed_in? %>
-		<div class="span3">
+		<div class="span3" style="margin-top:30px;">
           <div class="well sidebar-nav">
-			<h3>Sidebar</h3>
 			<ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
+              <li class="nav-header">Main menu</li>
+              <li class="active"><%= link_to "Vector pioneers", "/path1" %></li>
+              <li><%= link_to "My pioneers", "/path1"  %></li>
+              <li><%= link_to "Add new pioneer", "/path1"  %></li>
+              <li class="nav-header">Management</li>
+              <li><%= link_to "Users", "/path1"  %></li>
+              <li><%= link_to "Pioneers", "/path1"  %></li>
 			</ul>
           </div><!--/.well -->
 		</div><!--/span-->
-        <div class="span9">
+        <div class="span9" style="margin-top:30px;">
           <%= bootstrap_flash %>
           <%= yield %>
         </div><!--/span-->
 		<% else %>
-        <div class="span12">
+        <div class="span12" style="margin-top:30px;">
           <%= bootstrap_flash %>
           <%= yield %>
         </div><!--/span-->
