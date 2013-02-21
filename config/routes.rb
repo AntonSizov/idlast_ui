@@ -1,8 +1,8 @@
 Stui::Application.routes.draw do
 
   root :to => 'pages#home'
+  resources :articles
   devise_for :users
-  resources :subscriptions
   resources :users do
     # resources :subscriptions
   end
