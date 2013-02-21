@@ -1,6 +1,7 @@
 class Article
   include Mongoid::Document
   belongs_to :user
+  embeds_many :comments
 
   attr_accessible :title, :text, :published
 

@@ -12,25 +12,3 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
-<table>
-  <tr>
-    <th>Pioneer ID</th>
-	<th>Notify</th>
-	<th>Submitted</th>
-	<th>Created at</th>
-  </tr>
-
-  <% @user.subscriptions.each do |sub| %>
-    <tr>
-      <td><%= sub.pioneer_id %></td>
-	  <td><%= sub.notify %></td>
-	  <td><%= sub.submitted %></td>
-	  <td><%= sub.created_at.to_s(:user_datetime) %></td>
-      <td><%= link_to 'Destroy', sub, :confirm => 'Are you sure?', :method => :delete %></td>
-
-    </tr>
-  <% end %>
-
-</table>
-<%= link_to 'Create subscription', new_subscription_path %>
-

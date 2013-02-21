@@ -2,26 +2,17 @@
 <% @articles.each do |article| %>
 <div>
   <h3><%= article.title %></h3>
-  <em class="muted">
-	  <%= article.created_at.to_s(:user_datetime) %>
-  </em>
-  <div><%= raw(article.text) %></div>
-  <div><i class="icon-comment"> 0 </i></div>
-
-  <div>
+  <p class="muted">
+	  <%= article.created_at.to_s(:user_datetime) %> |
+	  <%= link_to "Comments: #{article.comments.count}", article_path(article) %> |
 	<% if article.published? %>
 	Published
 	<% else %>
 	Unpublished
-	<% end %>
-
-	<%= link_to 'Edit', edit_article_path(article) %>
-	-
+	<% end %> |
+	<%= link_to 'Edit', edit_article_path(article) %> |
     <%= link_to 'Delete', article, :confirm => 'Are you sure?', :method => :delete %>
-  </div>
+  </p>
+  <div><%= raw(article.text) %></div>
 </div>
 <% end %>
-
-<br />
-
-<%= link_to 'New article', new_article_path %>
