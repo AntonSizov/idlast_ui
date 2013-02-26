@@ -1,10 +1,5 @@
 module ApplicationHelper
 
-  # def logo
-  #   image_tag("logo.png", :alt => "ShutterTracker", :class => "round")
-  # end
-
-  # Return a title on a per-page basis.
   def title
     base_title = "IDLast.com"
     if @title.nil?
@@ -12,6 +7,11 @@ module ApplicationHelper
     else
       "#{@title} | #{base_title}"
     end
+  end
+
+  def li_link_to(title, path)
+    active = { class: "active" } if current_page?(path)
+    content_tag(:li, link_to(title, path), active)
   end
 
 end
