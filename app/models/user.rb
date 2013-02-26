@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   has_many :articles
+  has_many :pioneers
 
   attr_accessible :name, :email, :password
 

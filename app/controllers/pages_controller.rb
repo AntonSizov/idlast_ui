@@ -1,13 +1,7 @@
-
 class PagesController < ApplicationController
 
-
   def home
-    if user_signed_in?
-      @users = User.all
-    else
-      render 'greeting'
-    end
+    redirect_to :controller => "pioneers", :action => "vectors" if user_signed_in?
   end
 
 end

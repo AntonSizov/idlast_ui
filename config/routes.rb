@@ -1,14 +1,17 @@
 Stui::Application.routes.draw do
 
-  root :to => 'pages#home'
+  root to: 'pages#home'
+
+  match 'photos' => 'pioneers#photos'
+  match 'vectors' => 'pioneers#vectors'
+  match 'illustrations' => 'pioneers#illustrations'
+  resources :pioneers
+
   resources :articles do
     resources :comments
   end
   devise_for :users
-  resources :users do
-    # resources :subscriptions
-  end
-
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
