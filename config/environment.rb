@@ -5,3 +5,5 @@ require File.expand_path('../application', __FILE__)
 Stui::Application.initialize!
 
 Time::DATE_FORMATS[:user_datetime] = "%B %d, %Y at %k:%M"
+
+Time::DATE_FORMATS[:pioneer_datetime] = "%d/%m/%Y %H:%M"

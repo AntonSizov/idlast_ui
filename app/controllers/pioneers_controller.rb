@@ -3,22 +3,22 @@ class PioneersController < ApplicationController
   def index
     @title = "My pioneers"
     # @new_pioneer = current_user.pioneers.new
-    @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 5)
+    @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 10)
   end
 
   def vectors
     @title = "Vector pioneers"
-    @pioneers = Pioneer.where(approved: true, type: "vector").order_by(img_id: -1).paginate(page: params[:page], per_page: 5)
+    @pioneers = Pioneer.where(approved: true, type: "vector").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   def illustrations
     @title = "Illustration pioneers"
-    @pioneers = Pioneer.where(approved: true, type: "illustration").order_by(img_id: -1).paginate(page: params[:page], per_page: 5)
+    @pioneers = Pioneer.where(approved: true, type: "illustration").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   def photos
     @title = "Photo pioneers"
-    @pioneers = Pioneer.where(approved: true, type: "photo").order_by(img_id: -1).paginate(page: params[:page], per_page: 5)
+    @pioneers = Pioneer.where(approved: true, type: "photo").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   # def show
@@ -45,29 +45,33 @@ class PioneersController < ApplicationController
     end
   end
 
+  def edit
+    @title = 'Edit pioneer'
+    @pioneer = Pioneer.find(params[:id])
+  end
+
+  def update
+    @pioneer = Pioneer.find(params[:id])
+    approved_at = Time.new *flatten_datetime_array(params[:pioneer])
+    @pioneer.approved_at = approved_at
+    params[:pioneer][:approved_at] = approved_at
+    if @pioneer.update_attributes(params[:pioneer])
+      redirect_to(pioneers_path, :notice => 'Pioneer was successfully updated.')
+    else
+      render :action => "edit"
+    end
+  end
+
+  def destroy
+    @pioneer = Pioneer.find(params[:id])
+    @pioneer.destroy
+    redirect_to(pioneers_url)
+  end
+
+  private
+
   def flatten_datetime_array hash
     %w(1 2 3 4 5).map { |e| hash["approved_at(#{e}i)"].to_i }
   end
-
-  # def edit
-  #   @menu = :blog
-  #   @title = 'Edit article'
-  #   @article = Article.find(params[:id])
-  # end
-
-  # def update
-  #   @article = Article.find(params[:id])
-  #   if @article.update_attributes(params[:article])
-  #     redirect_to(@article, :notice => 'Article was successfully updated.')
-  #   else
-  #     render :action => "edit"
-  #   end
-  # end
-
-  # def destroy
-  #   @article = Article.find(params[:id])
-  #   @article.destroy
-  #   redirect_to(articles_url)
-  # end
 
 end

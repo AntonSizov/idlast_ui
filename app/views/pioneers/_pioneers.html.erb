@@ -3,11 +3,16 @@
   <tr>
 	<td>
 	  <p># <%= pioneer.masked_id %></p>
-	  <p>Type: <%= pioneer.type %></p>
-	  <p>Approved: <%= pioneer.approved_at.to_s(:user_datetime) %></p>
-	  <p>User: <%= pioneer.user_name %></p>
+	</td>
+	<td>
+	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	</td>
+	<td>
+	  <p><%= pioneer.user_name %></p>
 	</td>
   </tr>
 <% end %>
 </table>
-<%= will_paginate @pioneers %>
+<div style="margin-left:130px;">
+  <%= will_paginate @pioneers %>
+</div>

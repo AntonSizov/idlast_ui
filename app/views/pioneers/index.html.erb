@@ -2,12 +2,33 @@
 <% @pioneers.each do |pioneer| %>
   <tr>
 	<td>
-	  <p># <%= pioneer.masked_id %></p>
-	  <p>Type: <%= pioneer.type %></p>
-	  <p>Approved: <%= pioneer.approved_at.to_s(:user_datetime) %></p>
-	  <p>User: <%= pioneer.user_name %></p>
+	  <p># <%= pioneer.img_id %></p>
+	</td>
+	<td>
+	  <p><%= pioneer.type %></p>
+	</td>
+	<td>
+	  <% if pioneer.approved? %>
+	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <% else %>
+	  <p>pending</p>
+	  <% end %>
+	</td>
+	<td>
+	  <div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  Action
+		  <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><%= link_to 'Delete', pioneer, :confirm => 'Are you sure?', :method => :delete %></li>
+		  <li><%= link_to 'Edit', edit_pioneer_path(pioneer) %></li>
+		</ul>
+	  </div>
 	</td>
   </tr>
 <% end %>
 </table>
-<%= will_paginate @pioneers %>
+<div style="margin-left:130px;">
+  <%= will_paginate @pioneers %>
+</div>
