@@ -1,13 +1,14 @@
+<div id="<%= "votes_#{pioneer.id}" %>">
 <% if current_user.voted?(pioneer) %>
-  <i class="icon-arrow-up muted"></i>
+  <i style="visibility:hidden;" class="icon-arrow-up muted"></i>
 <% else %>
-  <%= link_to vote_up_path(pioneer) do %>
+  <%= link_to vote_up_path(pioneer), :remote => true do %>
   <i style="text-decoration:none;"  class="icon-arrow-up"></i>
   <% end %>
 <% end %>
 
 <% if pioneer.votes_point > 0 %>
-  <span class="text-success"><b><%= pioneer.votes_point %></b></span>
+  <span class="text-success"><b>+<%= pioneer.votes_point %></b></span>
 <% elsif pioneer.votes_point < 0 %>
   <span class="text-error"><b><%= pioneer.votes_point %></b></span>
 <% else %>
@@ -15,9 +16,10 @@
 <% end %>
 
 <% if current_user.voted?(pioneer) %>
-  <i class="icon-arrow-down muted"></i>
+  <i style="visibility:hidden;" class="icon-arrow-down muted"></i>
 <% else %>
-  <%= link_to vote_down_path(pioneer) do %>
+  <%= link_to vote_down_path(pioneer), :remote => true do %>
   <i style="text-decoration:none;" class="icon-arrow-down"></i>
   <% end %>
 <% end %>
+</div>

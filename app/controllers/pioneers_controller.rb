@@ -63,12 +63,20 @@ class PioneersController < ApplicationController
 
   def vote_up
     Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :up)
-    redirect_to request.referer
+    @pioneer = Pioneer.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def vote_down
     Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :down)
-    redirect_to request.referer
+    @pioneer = Pioneer.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   private
