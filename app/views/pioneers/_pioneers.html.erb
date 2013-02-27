@@ -1,3 +1,5 @@
+<% if @pioneers.length > 0 %>
+
 <table class="table table-striped">
 <% @pioneers.each do |pioneer| %>
   <tr>
@@ -8,6 +10,9 @@
 	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
 	</td>
 	<td>
+	  <%= render 'vote', :pioneer => pioneer %>
+	</td>
+	<td>
 	  <p><%= pioneer.user_name %></p>
 	</td>
   </tr>
@@ -16,3 +21,9 @@
 <div style="margin-left:130px;">
   <%= will_paginate @pioneers %>
 </div>
+
+<% else %>
+
+<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
+
+<% end %>

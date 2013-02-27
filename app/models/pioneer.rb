@@ -1,5 +1,7 @@
 class Pioneer
   include Mongoid::Document
+  include Mongo::Voteable
+
   belongs_to :user
 
   attr_accessible :img_id, :type, :approved, :approved_at
@@ -14,6 +16,9 @@ class Pioneer
   validates_numericality_of :img_id, greater_than: 0,
                             message: 'ID should be number greater than 0'
   validates_uniqueness_of :img_id
+
+  voteable self, :up => +1, :down => -1
+  # voteable User, :up => +1, :down => -1
 
   # Tracker fields
   # field :album_id,    :type => Integer

@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongo::Voter
   has_many :articles
   has_many :pioneers
 

@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 # gem 'sqlite3'
 gem "mongoid", "3.0.21"
+gem 'voteable_mongo', :git => 'https://github.com/dementrock/voteable_mongo.git'
 gem "devise", "2.2.3"
 gem "will_paginate_mongoid", "1.1.0"
 gem 'bootstrap-will_paginate'

@@ -2,7 +2,6 @@ class PioneersController < ApplicationController
 
   def index
     @title = "My pioneers"
-    # @new_pioneer = current_user.pioneers.new
     @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 10)
   end
 
@@ -20,12 +19,6 @@ class PioneersController < ApplicationController
     @title = "Photo pioneers"
     @pioneers = Pioneer.where(approved: true, type: "photo").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
-
-  # def show
-  #   @menu = :pioneers
-  #   @pioneer = Pioneer.find(params[:id])
-  #   @title = @article.title
-  # end
 
   def new
     @title = "New pioneer"
@@ -66,6 +59,16 @@ class PioneersController < ApplicationController
     @pioneer = Pioneer.find(params[:id])
     @pioneer.destroy
     redirect_to(pioneers_url)
+  end
+
+  def vote_up
+    Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :up)
+    redirect_to request.referer
+  end
+
+  def vote_down
+    Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :down)
+    redirect_to request.referer
   end
 
   private
