@@ -1,25 +1,21 @@
  class ArticlesController < ApplicationController
 
   def index
-    @menu = :blog
     @title = "Blog"
     @articles = Article.where(:published => true).order_by(created_at: -1).paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
-    @menu = :blog
     @article = Article.find(params[:id])
     @title = @article.title
   end
 
   def new
-    @menu = :new_article
     @title = "New article"
     @article = Article.new
   end
 
   def edit
-    @menu = :blog
     @title = 'Edit article'
     @article = Article.find(params[:id])
   end
