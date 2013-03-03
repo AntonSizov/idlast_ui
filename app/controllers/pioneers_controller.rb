@@ -26,9 +26,14 @@ class PioneersController < ApplicationController
   end
 
   def create
+    approved_at = Time.new *flatten_datetime_array(params[:pioneer])
+
+    (1..5).each do |i|
+      params[:pioneer].delete("approved_at(#{i}i)")
+    end
+
     @pioneer = current_user.pioneers.new(params[:pioneer])
     @pioneer.user_name = current_user.name
-    approved_at = Time.new *flatten_datetime_array(params[:pioneer])
     @pioneer.approved_at = approved_at
     if @pioneer.save
       redirect_to(pioneers_path,
@@ -48,6 +53,11 @@ class PioneersController < ApplicationController
     approved_at = Time.new *flatten_datetime_array(params[:pioneer])
     @pioneer.approved_at = approved_at
     params[:pioneer][:approved_at] = approved_at
+
+    (1..5).each do |i|
+      params[:pioneer].delete("approved_at(#{i}i)")
+    end
+
     if @pioneer.update_attributes(params[:pioneer])
       redirect_to(pioneers_path, :notice => 'Pioneer was successfully updated.')
     else
