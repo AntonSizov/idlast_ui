@@ -15,8 +15,13 @@ Stui::Application.routes.draw do
   resources :articles do
     resources :comments
   end
+
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      put :update_pass
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

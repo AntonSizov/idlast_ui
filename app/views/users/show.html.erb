@@ -1,14 +1,34 @@
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Username:</b>
+<h3>
   <%= @user.name %>
+</h3>
+<p>
+  <b>email:</b>
+  <span><%= @user.email %></span> <span class="muted">(hidden)</span>
 </p>
 
+<br \>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= form_for(@user, :url => {:action => 'update_pass'}) do |f| %>
 
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <fieldset>
+  <legend class="muted">Change password</legend>
+  <br \>
+
+  <div class="field">
+   <%= f.password_field :current_password, :placeholder => "Your current password" %>
+  </div>
+  <div class="field">
+    <%= f.password_field :password, :placeholder => "Create new password" %>
+  </div>
+  <div class="field">
+    <%= f.password_field :password_confirmatio,
+		:placeholder => "Confirm password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Change my password', :class => 'btn' %>
+  </div>
+  </fieldset>
+<% end %>

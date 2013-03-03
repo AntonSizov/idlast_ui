@@ -3,7 +3,10 @@
   <%= devise_error_messages! %>
   <h2 class="form-signin-heading">Sign up</h2>
 
-  <%= f.email_field :email, :autofocus => true, :placeholder => "Your e-mail",
+  <%= f.text_field :name, :autofocus => true, :placeholder => "Pick a username",
+  :class => "input-block-level" %>
+
+  <%= f.email_field :email, :placeholder => "Your e-mail",
   :class => "input-block-level" %>
 
   <%= f.password_field :password, :placeholder => "Create password",
