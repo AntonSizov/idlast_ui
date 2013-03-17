@@ -4,7 +4,7 @@
 	<%= article.created_at.to_s(:user_datetime) %> |
 	<%= link_to "Comments: #{article.comments.count}", article_path(article, :anchor => "comments") %>
 
-	<% if current_user.admin %>
+	<% if current_user && current_user.admin %>
 	  | <% if article.published? %>Published<% else %>Unpublished<% end %>
 	  | <%= link_to 'Edit', edit_article_path(article) %>
       <%= link_to 'Delete', article, :confirm => 'Are you sure?', :method => :delete %>

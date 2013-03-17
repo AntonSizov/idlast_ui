@@ -12,7 +12,6 @@
 		  <%= li_link_to 'News', articles_path %>
 		  <% if user_signed_in? && current_user.admin? %>
 	      <li><%= link_to 'Users', users_path %></li>
-		  <li><%= link_to 'Subscriptions', subscriptions_path %></li>
 		  <% end %>
 		</ul> <!-- ul class nav -->
 		<% if user_signed_in? %>
