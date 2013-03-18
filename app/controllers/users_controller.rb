@@ -26,8 +26,7 @@
     end
   end
 
-  # http://stackoverflow.com/questions/6607834/rails-3-devise-manually-change-pa
-  ssword
+  # http://stackoverflow.com/questions/6607834/rails-3-devise-manually-change-password
   def update_pass
     @user = User.find(params[:id])
     if @user.update_with_password(params[:user])
