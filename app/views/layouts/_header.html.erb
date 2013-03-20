@@ -6,7 +6,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to "IDLast", root_path, :class => "brand" %>
+      <%= link_to root_path, :class => "brand" do %>
+	  <span>IDLast<sup> beta</sup></span>
+	  <% end %>
       <div class="container nav-collapse">
 		<ul class="nav">
 		  <%= li_link_to 'News', articles_path %>
