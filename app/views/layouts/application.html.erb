@@ -39,18 +39,18 @@
 	<%= render 'layouts/header' %>
 
     <div class="container">
-      <div class="row">
+      <div class="row" style="margin-top:30px;">
 		<% if user_signed_in? %>
-		<div class="span3" style="margin-top:30px;">
+		<div class="span3">
 		  <%= render 'layouts/pioneer-navbar' %>
 		</div><!--/span-->
-        <div class="span9" style="margin-top:30px;">
-          <%= bootstrap_flash %>
+        <div class="span9">
+          <%# bootstrap_flash %>
           <%= yield %>
         </div><!--/span-->
 		<% else %>
-        <div class="span12" style="margin-top:30px;">
-          <%= bootstrap_flash %>
+        <div class="span12">
+          <%# bootstrap_flash %>
           <%= yield %>
         </div><!--/span-->
 		<% end %>
