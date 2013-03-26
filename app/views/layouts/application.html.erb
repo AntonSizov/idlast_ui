@@ -42,20 +42,7 @@
       <div class="row">
 		<% if user_signed_in? %>
 		<div class="span3" style="margin-top:30px;">
-          <div class="well sidebar-nav">
-			<ul class="nav nav-list">
-			  <%= li_link_to "Vector pioneers", vectors_path %>
-			  <%= li_link_to "Illustration pioneers", illustrations_path %>
-			  <%= li_link_to "Photo pioneers", photos_path %>
-              <%= li_link_to "My pioneers", pioneers_path  %>
-              <%= li_link_to "Add new pioneer", new_pioneer_path  %>
-			  <% if current_user.admin %>
-              <li class="nav-header">Management</li>
-			  <%= li_link_to "Users", users_path %>
-			  <%= li_link_to "New article", new_article_path %>
-			  <% end %>
-			</ul>
-          </div><!--/.well -->
+		  <%= render 'layouts/pioneer-navbar' %>
 		</div><!--/span-->
         <div class="span9" style="margin-top:30px;">
           <%= bootstrap_flash %>
