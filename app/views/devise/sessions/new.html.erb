@@ -1,3 +1,5 @@
+<div class="row" style="margin-top:30px;">
+<div class="span12">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
 :html => { :class => "form-signin"}) do |f| %>
   <h2 class="form-signin-heading">Sign in</h2>
@@ -16,8 +18,9 @@
 	</label>
   <% end -%>
 
-  <div><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+  <div><%= f.submit "Sign in", :class => "btn btn-large btn-primary" %></div>
   <p></p>
   <div><%= render "devise/shared/links" %></div>
 <% end %>
-
+</div>
+</div>

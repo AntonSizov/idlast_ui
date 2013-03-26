@@ -29,8 +29,14 @@
 		<% else %>
 
         <ul class="nav pull-right">
+
+		  <!--doesn't show signup btn at home page-->
+		  <% if controller.controller_name != 'pages' && controller.action_name != 'home' %>
 		  <li><div><%= link_to "Sign up", new_user_registration_path, :class => "btn btn-primary" %></div></li>
 		  <li class="divider-vertical"></li>
+		  <% end %>
+		  <!--end -> doesn't show signup btn at home page-->
+
 		  <li><div><%= link_to "Sign in", new_user_session_path, :class => "btn" %></div></li>
         </ul>
 		<% end %>
