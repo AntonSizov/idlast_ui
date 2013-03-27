@@ -14,4 +14,8 @@ module ApplicationHelper
     content_tag(:li, link_to(title, path), active)
   end
 
+  def admin_ns?
+    controller.class.name.split("::").first=="Admin"
+  end
+
 end

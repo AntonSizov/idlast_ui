@@ -23,8 +23,14 @@ Stui::Application.routes.draw do
     end
   end
 
+
+  # Admin panel
+
+  match 'admin' => redirect('/admin/users')
   namespace :admin do
     resources :users
+    resources :articles
+    resources :pioneers
   end
 
   # The priority is based upon order of creation:

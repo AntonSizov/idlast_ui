@@ -42,7 +42,11 @@
 	<% if user_signed_in? %>
       <div class="row" style="margin-top:30px;">
 		<div class="span3">
+		  <% if admin_ns? %>
+		  <%= render 'layouts/admin-navbar' %>
+		  <% else %>
 		  <%= render 'layouts/pioneer-navbar' %>
+		  <% end %>
 		</div><!--/span-->
         <div class="span9">
           <%# bootstrap_flash %>

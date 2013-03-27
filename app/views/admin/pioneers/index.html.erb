@@ -1,0 +1,41 @@
+<% if @pioneers.length > 0 %>
+
+<table class="table table-striped">
+<% @pioneers.each do |pioneer| %>
+  <tr>
+	<td>
+	  <p># <%= pioneer.img_id %></p>
+	</td>
+	<td>
+	  <p><%= pioneer.type %></p>
+	</td>
+	<td>
+	  <% if pioneer.approved? %>
+	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <% else %>
+	  <p>pending</p>
+	  <% end %>
+	</td>
+	<td>
+	  <% if pioneer.votes_point > 0 %>
+	    <span class="text-success"><b>+<%= pioneer.votes_point %></b></span>
+	  <% elsif pioneer.votes_point < 0 %>
+		<span class="text-error"><b><%= pioneer.votes_point %></b></span>
+	  <% else %>
+	    <span class="muted"><b><%= pioneer.votes_point %></b></span>
+	  <% end %>
+	</td>
+	<td>
+	</td>
+  </tr>
+<% end %>
+</table>
+<div style="margin-left:130px;">
+  <%= will_paginate @pioneers %>
+</div>
+
+<% else %>
+
+<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
+
+<% end %>

@@ -7,7 +7,13 @@
         <span class="icon-bar"></span>
       </a>
       <%= link_to root_path, :class => "brand" do %>
-	  <span>IDLast<sup> beta</sup></span>
+	  <span>IDLast
+		<% if admin_ns? %>
+		<sup style="color:red;"> admin panel</sup>
+		<% else %>
+		<sup> beta</sup>
+		<% end %>
+	  </span>
 	  <% end %>
       <div class="container nav-collapse">
 		<ul class="nav">

@@ -1,0 +1,29 @@
+<% if @articles.length > 0 %>
+
+<table class="table table-striped">
+<% @articles.each do |article| %>
+  <tr>
+	<td>
+	  <%= link_to article.title, admin_article_path(article) %>
+	</td>
+	<td>
+	  by <%= article.user_name %>
+	</td>
+	<td>
+	  <%= article.published %>
+	</td>
+	<td>
+	  <%= article.created_at %>
+	</td>
+  </tr>
+<% end %>
+</table>
+<div style="margin-left:130px;">
+  <%= will_paginate @articles %>
+</div>
+
+<% else %>
+
+<p>There are no any articles.</p>
+
+<% end %>
