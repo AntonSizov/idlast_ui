@@ -7,19 +7,23 @@ class Admin::UsersController < ApplicationController
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page], :per_page => 10)
+    authorize! :index, @users
   end
 
   def new
     @user = User.new
     @current_method = "new"
+    authorize! :create, @user
   end
 
   def edit
     @user = User.find(params[:id])
+    authorize! :edit, @user
   end
 
   def create
     @user = User.new(params[:user])
+    authorize! :create, @user
     if @user.save
       redirect_to(@user, :notice => 'User was successfully created.')
     else
@@ -29,6 +33,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    authorize! :show, @user
   end
 
 

@@ -1,5 +1,7 @@
 class PioneersController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
     @title = "My pioneers"
     @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 10)

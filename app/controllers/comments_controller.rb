@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
     @comment = @article.comments.new(params[:comment])
     @comment.set_user(current_user)
 
+    authorize! :create, @comment
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(@article, :notice => 'Comment created') }
@@ -18,7 +20,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @article = Article.find(params[:article_id])
-    @article.comments.find(params[:id]).destroy
+    @comment = @article.comments.find(params[:id])
+
+    authorize! :destroy, @comment
+
+    @comment.destroy
     redirect_to @article, :notice => 'Comment deleted'
   end
 
