@@ -8,10 +8,12 @@
   <% end %>
 </table>
 
+<% if user_signed_in? %>
 <h4>New Comment</h4>
 <%= form_for [@article, Comment.new], :remote => true do |f| %>
-  <fieldset>
+<fieldset>
   <p><%= f.text_area :content, :rows => 4, :style => 'width: 600px' %></p>
   <%= f.submit 'Create comment', :class => 'btn' %>
-  </fieldset>
+</fieldset>
+<% end %>
 <% end %>
