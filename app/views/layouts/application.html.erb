@@ -39,6 +39,15 @@
 	<%= render 'layouts/header' %>
 
     <div class="container">
+
+	  <!-- flash -->
+	  <div class="row">
+		<div class="span12">
+		  <%= bootstrap_flash %>
+		</div> <!-- span12 -->
+	  </div> <!-- row -->
+	  <!-- end flash -->
+
 	<% if user_signed_in? %>
       <div class="row" style="margin-top:30px;">
 		<div class="span3">
