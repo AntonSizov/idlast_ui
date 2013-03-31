@@ -1,13 +1,13 @@
 <div class="row" style="margin-top:30px;">
-  <div class="span8">
-	<center><div style="padding: 0px 100px 0px 100px;">
+  <div class="span6 offset1">
+	<center>
 		<img src="assets/logo.png"  style="width: 133px; height: 143px;">
 		<h2>Узнайте когда инспекторы Shutterstock проверят Ваши работы</h2>
 		<p>Подгрузив работы непосредственно перед проверкой, вы получаете возможность попасть на первые страницы.</p>
-	</div></center> <!-- subcontainer -->
+	</center>
   </div> <!-- span8 -->
-  <div class="span4">
-	<div class="form-container" style="padding: 60px 20px 0px 40px;">
+  <div class="span3 offset1">
+	<div class="form-container" style="padding-top:60px;">
 	  <%= form_for(User.new, :url => user_registration_path, :html => { :class => "home-form-signin"}) do |f| %>
 	  <%= f.text_field :name, :autofocus => true, :placeholder => "Pick a username",
 	  :class => "input-block-level" %>
@@ -18,6 +18,8 @@
 	  <%= f.password_field :password, :placeholder => "Create password",
 	  :class => "input-block-level"  %>
 
+	  <p class="muted" style="font-size:80%;">By clicking on "Sign up" below, you agree to the Terms of Service and the Privacy Policy.</p>
+
 	  <%= f.submit "Sign up", :class => "btn btn-large btn-success", :style => "" %>
 	  <% end %>
 	</div> <!-- form-container -->
@@ -25,26 +27,30 @@
 </div> <!-- row -->
 
 
-<div class="row" style="background-color:#EEE;margin-top:30px;">
-  <div class="span4">
-  	<center><div style="padding:40px 40px 20px 40px;">
-      <img src="assets/icon-1.png"  style="width: 72px; height: 51px;">
-      <h3>Увеличте доход</h3>
-      <p>Работы на первых страницах (при сортировке по новым) продаются в 3-4 раза больше.</p>
-  	</div></center> <!-- subcontainer -->
-  </div> <!-- span4 -->
-  <div class="span4">
-  	<center><div style="padding:40px 40px 20px 40px;">
-      <img src="assets/icon-2.png"  style="width: 46px; height: 51px;">
-      <h3>Будьте в курсе</h3>
-      <p>Контролируйте, не пропустили ли Ваши работы при проверке.</p>
-  	</div></center> <!-- subcontainer -->
-  </div> <!-- span4 -->
-  <div class="span4">
-  	<center><div style="padding:40px 40px 20px 40px;">
-      <img src="assets/icon-3.png"  style="width: 63px; height: 51px;">
-      <h3>Зарегистрируйтесь</h3>
-        <p>Пройдите простую регистрацию и извлекайте прибыль.</p>
-  	</div></center> <!-- container -->
-  </div> <!-- span4 -->
+<div class="row">
+  <div class="span12" style="background-color:#EEE;margin-top:30px;">
+	<div class="row">
+	  <div class="span4">
+  		<center><div style="padding:40px 40px 20px 40px;">
+			<img src="assets/icon-1.png"  style="width: 72px; height: 51px;">
+			<h3>Увеличте доход</h3>
+			<p>Работы на первых страницах (при сортировке по новым) продаются в 3-4 раза больше.</p>
+  		</div></center> <!-- subcontainer -->
+	  </div> <!-- span4 -->
+	  <div class="span4">
+  		<center><div style="padding:40px 40px 20px 40px;">
+			<img src="assets/icon-2.png"  style="width: 46px; height: 51px;">
+			<h3>Будьте в курсе</h3>
+			<p>Контролируйте, не пропустили ли Ваши работы при проверке.</p>
+  		</div></center> <!-- subcontainer -->
+	  </div> <!-- span4 -->
+	  <div class="span4">
+  		<center><div style="padding:40px 40px 20px 40px;">
+			<img src="assets/icon-3.png"  style="width: 63px; height: 51px;">
+			<h3>Зарегистрируйтесь</h3>
+			<p>Пройдите простую регистрацию и извлекайте прибыль.</p>
+  		</div></center> <!-- container -->
+	  </div> <!-- span4 -->
+	</div> <!-- row -->
+  </div> <!--span12-->
 </div> <!-- row -->
