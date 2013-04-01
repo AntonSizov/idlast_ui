@@ -1,10 +1,10 @@
-<tr>
+<tr id=<%= dom_id(comment) %>>
   <td>
 	<p class="muted">by <%= comment.user_name %>
 	  | <%= comment.created_at.to_s(:user_datetime) %>
 	  <% if current_user && current_user.admin %>
 	  | <%= link_to 'Delete', article_comment_path(@article, comment),
-			:confirm => 'Are you sure?', :method => :delete %></p>
+			:confirm => 'Are you sure?',:remote => true, :method => :delete %></p>
 	<% end %>
 	<p><%= comment.content %></p>
   </td>

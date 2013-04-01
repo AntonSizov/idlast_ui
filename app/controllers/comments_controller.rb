@@ -25,7 +25,11 @@ class CommentsController < ApplicationController
     authorize! :destroy, @comment
 
     @comment.destroy
-    redirect_to @article, :notice => 'Comment deleted'
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 end
