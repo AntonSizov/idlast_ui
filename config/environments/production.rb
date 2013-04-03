@@ -64,4 +64,20 @@ Stui::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+
+  # Docs => http://guides.rubyonrails.org/action_mailer_basics.html
+  ActionMailer::Base.default :from => 'no-reply@idlast.com'
+  config.action_mailer.default_url_options = { :host => "idlast.com:3000" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port => 25,
+    :address => "smtp.yandex.ru",
+    :user_name => "no-reply@idlast.com",
+    :password => "",
+    :authentication => "login" }
+
+ # raises an exception at start
+ # http://edgeguides.rubyonrails.org/action_mailer_basics.html
+ # config.action_mailer.default_options = { :from => 'no-reply@idlast.com' }
 end
