@@ -28,7 +28,7 @@
         <ul class="nav pull-right">
 
 		  <!--doesn't show signup btn at home page and at signup page -->
-		  <% if (controller.controller_name != 'pages' && controller.action_name != 'home') && controller_name != 'registrations' %>
+		  <% if (controller_name != 'pages' && action_name != 'home') && controller_name != 'registrations' %>
 		  <li><div><%= link_to "Sign up", new_user_registration_path, :class => "btn btn-success" %></div></li>
 		  <% end %>
 
