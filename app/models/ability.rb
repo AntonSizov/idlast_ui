@@ -9,7 +9,7 @@ class Ability
       can [:vote_up, :vote_down], Pioneer
       # 'destroy' action raise mongoid excepion when
       # using load_and_authorize_resource
-      can [:edit, :destroy], Pioneer, user_id: user.id
+      can [:update, :destroy], Pioneer, user_id: user.id
 
       can :create, Comment
       can :destroy, Comment, user_id: user.id
