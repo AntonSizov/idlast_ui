@@ -1,4 +1,4 @@
-class Admin::PioneersController < ApplicationController
+class Admin::PioneersController < Admin::AdminController
 
   def index
     @title = "All pioneers"

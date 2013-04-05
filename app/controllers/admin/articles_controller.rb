@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class Admin::ArticlesController < Admin::AdminController
 
   def index
     @title = "Blog"

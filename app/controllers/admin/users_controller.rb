@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
 
 # http://stackoverflow.com/questions/9245258/adding-controllers-with-a-namespace-admin-as-a-subfolder
 # http://stackoverflow.com/questions/10165934/properly-rendering-multiple-layouts-per-controller-in-rails

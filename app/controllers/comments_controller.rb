@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to(@article, :notice => 'Comment created') }
         format.js
       else
-        format.html { redirect_to(@article, :error => 'Comment was not created') }
+        format.html { redirect_to(@article, :alert => 'Comment was not created') }
         format.js
       end
     end

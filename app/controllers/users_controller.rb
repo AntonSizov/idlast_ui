@@ -13,7 +13,7 @@
       sign_in(@user, :bypass => true)
       redirect_to(@user, :notice => 'Password successfully updated.')
     else
-      redirect_to(@user, :error => 'Something went wrong!')
+      redirect_to(@user, :alert => 'Something went wrong!')
     end
   end
 
