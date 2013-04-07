@@ -1,6 +1,7 @@
 class Pioneer
   include Mongoid::Document
   include Mongo::Voteable
+  include Mongoid::Timestamps
 
   belongs_to :user
 
@@ -11,7 +12,6 @@ class Pioneer
   field :approved,    type: Boolean, default: false
   field :approved_at, type: Time,    default: Time.now
   field :user_name,   type: String
-  field :created_at,  type: Time,    default: Time.now
 
   validate :limit_num_of_pendings
 

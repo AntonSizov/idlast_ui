@@ -1,5 +1,6 @@
 class Article
   include Mongoid::Document
+  include Mongoid::Timestamps
   belongs_to :user
   embeds_many :comments
 
@@ -9,6 +10,5 @@ class Article
   field :text,              :type => String, :default => ""
   field :user_name,         :type => String, :default => ""
   field :published,         :type => Boolean, :default => false
-  field :created_at,        :type => Time, :default => Time.now
 
 end

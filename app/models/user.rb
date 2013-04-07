@@ -1,9 +1,11 @@
 class User
 
-  MAX_PENDING_ITEMS_PER_TYPE = 1
-
   include Mongoid::Document
   include Mongo::Voter
+  include Mongoid::Timestamps
+
+  MAX_PENDING_ITEMS_PER_TYPE = 1
+
   has_many :articles
   has_many :pioneers
 
