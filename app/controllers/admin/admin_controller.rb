@@ -1,5 +1,7 @@
 class Admin::AdminController < ApplicationController
 
+layout 'admin/app'
+
 before_filter :only_admin
 
 private

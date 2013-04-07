@@ -18,10 +18,6 @@ module ApplicationHelper
     content_tag(:li, link_to(title, path), active)
   end
 
-  def admin_ns?
-    controller.class.name.split("::").first=="Admin"
-  end
-
   def bootstrap_flash
     flash_messages = []
     flash.each do |type, message|
