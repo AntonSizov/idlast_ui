@@ -11,16 +11,31 @@
 	<br />
 
 	<label class="radio">
-	  <input type="radio" name="pioneer[type]" id="vector" value="vector" checked>
-	  Vector
+	  <% if current_user.can_add_pioneer?('vector') %>
+	    <input type="radio" name="pioneer[type]" id="vector" value="vector">
+		Vector
+	  <% else %>
+	    <input type="radio" name="pioneer[type]" id="vector" value="vector" disabled>
+	  Vector <span class="muted">You have reached limit of pending items for vector type. Move your pending vector to approved to create new one. Read more.</span>
+	  <% end %>
 	</label>
 	<label class="radio">
-	  <input type="radio" name="pioneer[type]" id="illustration" value="illustration">
+	  <% if current_user.can_add_pioneer?('illustration') %>
+	    <input type="radio" name="pioneer[type]" id="illustration" value="illustration">
 	  Illustration
+	  <% else %>
+	    <input type="radio" name="pioneer[type]" id="illustration" value="illustration" disabled>
+		Illustration <span class="muted">You have reached limit of pending items for illustration type. Move your pending illustration to approved to create new one. Read more.</span>
+	  <% end %>
 	</label>
 	<label class="radio">
-	  <input type="radio" name="pioneer[type]" id="photo" value="photo">
-	  Photo
+	  <% if current_user.can_add_pioneer?('photo') %>
+	    <input type="radio" name="pioneer[type]" id="photo" value="photo">
+		Photo
+	  <% else %>
+	    <input type="radio" name="pioneer[type]" id="photo" value="photo" disabled>
+		Photo <span class="muted">You have reached limit of pending items for photo type. Move your pending photo to approved to create new one. Read more.</span>
+	  <% end %>
 	</label>
 
 	<br />

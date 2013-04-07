@@ -1,4 +1,7 @@
 class User
+
+  MAX_PENDING_ITEMS_PER_TYPE = 1
+
   include Mongoid::Document
   include Mongo::Voter
   has_many :articles
@@ -49,4 +52,20 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  def can_add_pioneer? type
+    pendings = self.pioneers.where(:type => type, :approved => false).count
+    return false if pendings >= MAX_PENDING_ITEMS_PER_TYPE
+    return true
+  end
+
+  def can_add_pioneers?
+    pendings = self.pioneers.where(:approved => false).count
+    if pendings >= (MAX_PENDING_ITEMS_PER_TYPE * 3)
+      return false
+    else
+      return true
+    end
+  end
+
 end

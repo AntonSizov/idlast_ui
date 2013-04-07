@@ -13,6 +13,9 @@ class Pioneer
   field :user_name,   type: String
   field :created_at,  type: Time,    default: Time.now
 
+  validate :limit_num_of_pendings
+
+  validates_inclusion_of :type, in: [ 'vector', 'illustration', 'photo' ], message: "Chose item type"
   validates_numericality_of :img_id, greater_than: 0,
                             message: 'ID should be number greater than 0'
   validates_uniqueness_of :img_id
@@ -27,6 +30,13 @@ class Pioneer
 
   def masked_id
     self.img_id.to_s[0...-3] << "***"
+  end
+
+  def limit_num_of_pendings
+    pendings = Pioneer.where(:user_id => self.user_id,
+                             :approved => false,
+                             :type => self.type).count
+    errors.add(:base, "You already has #{self.type} pending item") if pendings >= 1
   end
 
 end
