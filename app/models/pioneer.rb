@@ -35,8 +35,16 @@ class Pioneer
   def limit_num_of_pendings
     pendings = Pioneer.where(:user_id => self.user_id,
                              :approved => false,
-                             :type => self.type).count
-    errors.add(:base, "You already has #{self.type} pending item") if pendings >= 1
+                             :type => self.type)
+
+    for pending in pendings do
+      return true if pending.id == self.id
+    end
+
+    if pendings.length >= 1
+      errors.add(:base, "You already has #{self.type} pending item")
+    end
+
   end
 
 end
