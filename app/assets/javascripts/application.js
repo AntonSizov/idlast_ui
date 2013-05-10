@@ -10,7 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require jstz-1.0.4.min
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-1.9.0.custom
 //= require_tree .
+
+$(document).ready(function(){
+	document.cookie = 'jstz_time_zone='+jstz.determine().name()+';';
+});

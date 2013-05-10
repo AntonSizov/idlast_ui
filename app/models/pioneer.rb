@@ -10,7 +10,7 @@ class Pioneer
   field :img_id,      type: Integer
   field :type,        type: String   # vector, illustration, photo
   field :approved,    type: Boolean, default: false
-  field :approved_at, type: Time,    default: Time.now
+  field :approved_at, type: Time,    default: ->{ Time.now.utc }
   field :user_name,   type: String
 
   validate :limit_num_of_pendings

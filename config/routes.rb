@@ -16,7 +16,7 @@ Stui::Application.routes.draw do
     resources :comments
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "devise_custom/sessions" }
   resources :users do
     member do
       put :update_pass

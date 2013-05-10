@@ -24,6 +24,7 @@ class User
   ## Database authenticatable
   field :name,               type: String
   field :admin,              type: Boolean, default: false
+  field :timezone
   field :email,              type: String
   field :encrypted_password, type: String
 
