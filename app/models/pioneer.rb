@@ -21,7 +21,7 @@ class Pioneer
   validates_uniqueness_of :img_id
 
   voteable self, :up => +1, :down => -1
-  # voteable User, :up => +1, :down => -1
+  voteable User, :up => +1, :down => -1
 
   # Tracker fields
   # field :album_id,    :type => Integer
