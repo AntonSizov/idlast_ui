@@ -2,7 +2,7 @@
   <td>
 	<p class="muted">by <%= comment.user_name %>
 	  | <%= comment.created_at.to_s(:user_datetime) %>
-	  <% if current_user && current_user.admin %>
+	  <% if current_user && (current_user.admin || (current_user.id == comment.user_id)) %>
 	  | <%= link_to 'Delete', article_comment_path(@article, comment),
 			:confirm => 'Are you sure?',:remote => true, :method => :delete %></p>
 	<% end %>
