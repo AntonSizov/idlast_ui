@@ -13,7 +13,15 @@
 	  <%= render 'vote', :pioneer => pioneer %>
 	</td>
 	<td>
-	  <p><%= pioneer.user_name %><sup> <%= pioneer.user.votes_point %></sup></p>
+	  <p>
+		<%= gravatar_image_tag(
+			 pioneer.user_email,
+			 :alt => pioneer.user_name,
+		     :class => 'gravatar',
+		     :gravatar => { :size => 25 }) %>
+		<%= pioneer.user_name %>
+		<sup> <%= pioneer.user.votes_point %></sup>
+	  </p>
 	</td>
   </tr>
 <% end %>
