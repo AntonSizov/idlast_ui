@@ -68,7 +68,7 @@ Stui::Application.configure do
 
   # Docs => http://guides.rubyonrails.org/action_mailer_basics.html
   ActionMailer::Base.default :from => 'no-reply@idlast.com'
-  config.action_mailer.default_url_options = { :host => "idlast.com:3000" }
+  config.action_mailer.default_url_options = { :host => "idlast.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :port => 25,
