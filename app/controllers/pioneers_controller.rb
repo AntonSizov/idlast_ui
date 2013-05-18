@@ -36,6 +36,7 @@ class PioneersController < ApplicationController
 
     @pioneer = current_user.pioneers.new(params[:pioneer])
     @pioneer.user_name = current_user.name
+    @pioneer.user_email = current_user.email
     @pioneer.approved_at = approved_at
     if @pioneer.save
       redirect_to(pioneers_path,
