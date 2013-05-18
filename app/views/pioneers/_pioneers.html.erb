@@ -13,7 +13,7 @@
 	  <%= render 'vote', :pioneer => pioneer %>
 	</td>
 	<td>
-	  <p><%= pioneer.user_name %></p>
+	  <p><%= pioneer.user_name %><sup> <%= pioneer.user.votes_point %></sup></p>
 	</td>
   </tr>
 <% end %>

@@ -1,6 +1,7 @@
 class User
 
   include Mongoid::Document
+  include Mongo::Voteable
   include Mongo::Voter
   include Mongoid::Timestamps
 
