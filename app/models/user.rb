@@ -10,8 +10,9 @@ class User
   has_many :pioneers
 
   attr_accessible :name, :email, :password
+  attr_readonly :admin
 
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, case_sensitive: false
   validates_length_of :name, minimum: 3, maximum: 20
   validates_presence_of :name
 
