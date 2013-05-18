@@ -1,6 +1,7 @@
 Stui::Application.routes.draw do
 
   root to: 'pages#home'
+  match 'about_us' => 'pages#about_us'
 
   match 'photos' => 'pioneers#photos'
   match 'vectors' => 'pioneers#vectors'
