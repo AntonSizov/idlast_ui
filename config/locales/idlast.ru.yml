@@ -35,7 +35,7 @@ ru:
   create_pass: "Создать пароль"
   remember_me: "Запомнить меня"
   are_you_sure: "Вы уверены?"
-  avatar_change_instructions: "Что бы изменить фотографию своего профиля, воспользуйтесь сервисом gravator.com"
+  avatar_change_instructions_html: "Что бы изменить фотографию своего профиля, воспользуйтесь сервисом <a href=\"https://ru.gravatar.com/\">gravatar</a>"
   warning: "Внимание"
   pending_pioneers_limit_notification: "Вы достигли лимита на создание засланцев в статусе пендинг. Что бы создать нового засланца, удалите или переведите в статус принят Ваших засланцев"
   new_pioneer: "Новый засланец"
