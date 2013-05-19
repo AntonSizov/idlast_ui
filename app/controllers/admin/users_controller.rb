@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::AdminController
 
   def index
     @title = "All users"
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    @users = User.order_by(created_at: -1).paginate(:page => params[:page], :per_page => 20)
     authorize! :index, @users
   end
 
