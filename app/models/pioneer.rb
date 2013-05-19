@@ -18,8 +18,8 @@ class Pioneer
   validate :limit_num_of_pendings
 
   validates_inclusion_of :type, in: [ 'vector', 'illustration', 'photo' ], message: "Chose item type"
-  validates_numericality_of :img_id, greater_than: 0,
-                            message: 'ID should be number greater than 0'
+  validates_numericality_of :img_id, greater_than: 137000000,
+                            message: 'ID should be number greater than 137000000'
   validates_uniqueness_of :img_id
 
   voteable self, :up => +1, :down => -1
