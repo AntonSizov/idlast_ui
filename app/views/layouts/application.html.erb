@@ -69,7 +69,7 @@
           <%= yield %>
         </div><!--/span-->
 	  </div><!-- /row -->
-	<% elsif controller_name == 'articles' %>
+	<% elsif controller_name == 'articles' or action_name == 'about_us' %>
 	  <div class="row" style="margin-top:30px;">
 		<div class="span3"></div>
 		<div class="span9"><%= yield %></div>
