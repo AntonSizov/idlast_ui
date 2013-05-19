@@ -11,8 +11,12 @@
 	  <%= @user.name %>
 	</h3>
 	<p>
-	  <b>email:</b>
-	  <span><%= @user.email %></span> <span class="muted">(hidden for other users)</span>
+	  <div><%= @user.email %></div>
+	  <div class="muted">(<%= t(:email_security_notification) %>)</div>
+	</p>
+	<br /><br />
+	<p>
+	  <div><%= t(:avatar_change_instructions) %></div>
 	</p>
   </div>
 </div>
@@ -24,22 +28,21 @@
   <%= render 'shared/error_messages', :object => f.object %>
 
   <fieldset>
-  <legend class="muted">Change password</legend>
+  <legend class="muted"><%= t(:change_password_h) %></legend>
   <br \>
 
   <div class="field">
-   <%= f.password_field :current_password, :placeholder => "Your current password" %>
+   <%= f.password_field :current_password, :placeholder => t(:your_cur_pass) %>
   </div>
   <div class="field">
-    <%= f.password_field :password, :placeholder => "Create new password" %>
+    <%= f.password_field :password, :placeholder => t(:create_new_pass) %>
   </div>
   <div class="field">
-    <%= f.password_field :password_confirmatio,
-		:placeholder => "Confirm password" %>
+    <%= f.password_field :password_confirmatio,	:placeholder => t(:confirm_pass) %>
   </div>
 
   <div class="actions">
-    <%= f.submit 'Change my password', :class => 'btn' %>
+    <%= f.submit t(:change_my_password), :class => 'btn' %>
   </div>
   </fieldset>
 <% end %>

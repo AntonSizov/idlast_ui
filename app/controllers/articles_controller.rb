@@ -1,7 +1,7 @@
  class ArticlesController < ApplicationController
 
   def index
-    @title = "Blog"
+    @title = t(:blog_h)
     @articles = Article.where(:published => true).order_by(created_at: -1).paginate(:page => params[:page], :per_page => 5)
   end
 

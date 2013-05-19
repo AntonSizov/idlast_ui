@@ -1,5 +1,5 @@
 <% if current_user.can_add_pioneers? %>
   <%= render 'form' %>
 <% else %>
-  <div class="alert"><strong>Warning:</strong> You have reached limit of all pending types. Move your pendings to approved to create new pending. Read more.</div>
+  <div class="alert"><strong><%= t(:warning) %>:</strong> <%= t(:pending_pioneers_limit_notification) %> </div>
 <% end %>

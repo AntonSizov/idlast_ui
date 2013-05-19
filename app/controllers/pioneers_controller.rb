@@ -3,27 +3,27 @@ class PioneersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @title = "My pioneers"
+    @title = t(:my_pioneers)
     @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 10)
   end
 
   def vectors
-    @title = "Vector pioneers"
+    @title = t(:vectors)
     @pioneers = Pioneer.where(approved: true, type: "vector").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   def illustrations
-    @title = "Illustration pioneers"
+    @title = t(:illustrations)
     @pioneers = Pioneer.where(approved: true, type: "illustration").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   def photos
-    @title = "Photo pioneers"
+    @title = t(:photos)
     @pioneers = Pioneer.where(approved: true, type: "photo").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
   end
 
   def new
-    @title = "New pioneer"
+    @title = t(:new_pioneer)
     @pioneer = current_user.pioneers.new
   end
 
@@ -47,7 +47,7 @@ class PioneersController < ApplicationController
   end
 
   def edit
-    @title = 'Edit pioneer'
+    @title = t(:edit_pioneer)
     @pioneer = Pioneer.find(params[:id])
   end
 

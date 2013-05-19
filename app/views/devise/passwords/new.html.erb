@@ -2,13 +2,13 @@
 <div class="span12">
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post , :class => "form-signin" }) do |f| %>
-  <h2 class="form-signin-heading">Reset password</h2>
+  <h2 class="form-signin-heading"><%= t(:reset_pass) %></h2>
   <%= devise_error_messages! %>
 
-  <%= f.email_field :email, :autofocus => true, :placeholder => "Your e-mail" ,
+  <%= f.email_field :email, :autofocus => true, :placeholder => t(:your_email) ,
   :class => "input-block-level" %>
 
-  <div><%= f.submit "Send me reset password instructions", :class => "btn" %></div>
+  <div><%= f.submit t(:send_me_reset_instructions), :class => "btn" %></div>
   <p></p>
 <%= render "devise/shared/links" %>
 <% end %>

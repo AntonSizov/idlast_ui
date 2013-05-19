@@ -5,7 +5,7 @@
 
   <legend><%= @title %></legend>
 
-    <%= f.label 'Pioneer id' %>
+    <%= f.label t(:pioneer_id) %>
     <%= f.text_field :img_id %>
 
 	<br />
@@ -13,45 +13,45 @@
 	<label class="radio">
 	  <% if current_user.can_add_pioneer?('vector') %>
 	    <input type="radio" name="pioneer[type]" id="vector" value="vector">
-		Vector
+		<%= t(:vector) %>
 	  <% else %>
 	    <input type="radio" name="pioneer[type]" id="vector" value="vector" disabled>
-	  Vector <span class="muted">You have reached limit of pending items for vector type. Move your pending vector to approved to create new one. Read more.</span>
+	  <%= t(:vector) %> <span class="muted"><%= t(:one_pioneer_type_limit_notification) %></span>
 	  <% end %>
 	</label>
 	<label class="radio">
 	  <% if current_user.can_add_pioneer?('illustration') %>
 	    <input type="radio" name="pioneer[type]" id="illustration" value="illustration">
-	  Illustration
+	  <%= t(:illustration) %>
 	  <% else %>
 	    <input type="radio" name="pioneer[type]" id="illustration" value="illustration" disabled>
-		Illustration <span class="muted">You have reached limit of pending items for illustration type. Move your pending illustration to approved to create new one. Read more.</span>
+		<%= t(:illustration) %> <span class="muted"><%= t(:one_pioneer_type_limit_notification) %></span>
 	  <% end %>
 	</label>
 	<label class="radio">
 	  <% if current_user.can_add_pioneer?('photo') %>
 	    <input type="radio" name="pioneer[type]" id="photo" value="photo">
-		Photo
+		<%= t(:photo) %>
 	  <% else %>
 	    <input type="radio" name="pioneer[type]" id="photo" value="photo" disabled>
-		Photo <span class="muted">You have reached limit of pending items for photo type. Move your pending photo to approved to create new one. Read more.</span>
+		<%= t(:photo) %> <span class="muted"><%= t(:one_pioneer_type_limit_notification) %></span>
 	  <% end %>
 	</label>
 
 	<br />
 
-	<%= f.label :approved_at %>
+	<%= f.label t(:approved_at) %>
 	<%= f.datetime_select :approved_at, {},{:style => "width:70px;"} %>
 
 	<br />
 
     <label class="checkbox">
-	  <%= f.check_box :approved %> Approved?
+	  <%= f.check_box :approved %> <%= t(:is_approved) %>
     </label>
 
 	<br />
 
-    <button type="submit" class="btn">Save</button>
+    <button type="submit" class="btn"><%= t(:save) %></button>
 
   </fieldset>
 

@@ -7,7 +7,7 @@
 	  <p># <%= pioneer.img_id %></p>
 	</td>
 	<td>
-	  <p><%= pioneer.type %></p>
+	  <p><%= t(pioneer.type) %></p>
 	</td>
 	<td>
 	  <% if pioneer.approved? %>
@@ -26,16 +26,9 @@
 	  <% end %>
 	</td>
 	<td>
-	  <div class="btn-group">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-		  Action
-		  <span class="caret"></span>
-		</a>
-		<ul class="dropdown-menu">
-		  <li><%= link_to 'Delete', pioneer, :confirm => 'Are you sure?', :method => :delete %></li>
-		  <li><%= link_to 'Edit', edit_pioneer_path(pioneer) %></li>
-		</ul>
-	  </div>
+	  <%= link_to t(:delete), pioneer, :confirm => t(:are_you_sure), :method => :delete %>
+	<td>
+      <%= link_to t(:edit), edit_pioneer_path(pioneer) %>
 	</td>
   </tr>
 <% end %>

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def about_us
+    @title = t(:about_us_h)
   end
 
 end

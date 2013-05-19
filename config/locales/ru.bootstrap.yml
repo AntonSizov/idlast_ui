@@ -1,0 +1,15 @@
+
+ru:
+  helpers:
+    actions: "Дейсвия"
+    links:
+      back: "Назад"
+      cancel: "Отменить"
+      confirm: "Подтвердить"
+      destroy: "Удалить"
+      new: "Создать"
+    titles:
+      edit: "Изменить"
+      save: "Сохранить"
+      new: "Создать"
+      delete: "Удалить"
