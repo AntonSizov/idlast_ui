@@ -3,6 +3,7 @@ class Pioneer
   include Mongo::Voteable
   include Mongoid::Timestamps
 
+  before_save :mask_id
   belongs_to :user
 
   attr_accessible :img_id, :type, :approved, :approved_at
@@ -58,6 +59,12 @@ class Pioneer
       errors.add(:base, "You already has #{self.type} pending item")
     end
 
+  end
+
+  private
+
+  def mask_id
+    self.img_id = (self.img_id.to_s[0...-3] + "000").to_i
   end
 
 end
