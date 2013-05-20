@@ -17,13 +17,7 @@
 	  <% end %>
 	</td>
 	<td>
-	  <% if pioneer.votes_point > 0 %>
-	    <span class="text-success"><b>+<%= pioneer.votes_point %></b></span>
-	  <% elsif pioneer.votes_point < 0 %>
-		<span class="text-error"><b><%= pioneer.votes_point %></b></span>
-	  <% else %>
-	    <span class="muted"><b><%= pioneer.votes_point %></b></span>
-	  <% end %>
+	  <%= pioneer.created_at %>
 	</td>
 	<td>
 	  <%= pioneer.user_name %>
@@ -34,9 +28,4 @@
 <div style="margin-left:130px;">
   <%= will_paginate @pioneers %>
 </div>
-
-<% else %>
-
-<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
-
 <% end %>
