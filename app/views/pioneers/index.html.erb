@@ -1,44 +1,10 @@
-<% if @pioneers.length > 0 %>
+<%= render('priv_pioneers', :title => t(:pending_pioneers), :pioneers => @pendings) %>
+<%= render('priv_pioneers', :title => t(:approved_pioneers), :pioneers => @pioneers) %>
 
-<table class="table table-striped">
-<% @pioneers.each do |pioneer| %>
-  <tr>
-	<td>
-	  <p># <%= pioneer.img_id %></p>
-	</td>
-	<td>
-	  <p><%= t(pioneer.type) %></p>
-	</td>
-	<td>
-	  <% if pioneer.approved? %>
-	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
-	  <% else %>
-	  <p>pending</p>
-	  <% end %>
-	</td>
-	<td>
-	  <% if pioneer.votes_point > 0 %>
-	    <span class="text-success"><b>+<%= pioneer.votes_point %></b></span>
-	  <% elsif pioneer.votes_point < 0 %>
-		<span class="text-error"><b><%= pioneer.votes_point %></b></span>
-	  <% else %>
-	    <span class="muted"><b><%= pioneer.votes_point %></b></span>
-	  <% end %>
-	</td>
-	<td>
-	  <%= link_to t(:delete), pioneer, :confirm => t(:are_you_sure), :method => :delete %>
-	<td>
-      <%= link_to t(:edit), edit_pioneer_path(pioneer) %>
-	</td>
-  </tr>
-<% end %>
-</table>
 <div style="margin-left:130px;">
   <%= will_paginate @pioneers %>
 </div>
 
-<% else %>
-
-<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
-
+<% if @pendings.length == 0 and @pioneers.length == 0 %>
+<p><%= t(:your_have_no_pioneers) %> <%= link_to t(:add_new_pioneer), new_pioneer_path %></p>
 <% end %>

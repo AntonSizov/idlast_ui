@@ -1,0 +1,40 @@
+<% if pioneers.length > 0 %>
+<h3><%= title %></h3>
+<table class="table table-striped">
+<% pioneers.each do |pioneer| %>
+  <tr>
+	<td>
+	  <p># <%= pioneer.img_id %></p>
+	</td>
+	<td>
+	  <p><%= t(pioneer.type) %></p>
+	</td>
+	<td>
+	  <% if pioneer.approved? %>
+	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <% else %>
+	  <p class="muted"><%= pioneer.predict_approved_datetime.to_s(:pioneer_datetime) %></p>
+	  <% end %>
+	</td>
+	<td>
+	  <% if pioneer.votes_point > 0 %>
+	    <span class="text-success"><b>+<%= pioneer.votes_point %></b></span>
+	  <% elsif pioneer.votes_point < 0 %>
+		<span class="text-error"><b><%= pioneer.votes_point %></b></span>
+	  <% else %>
+	    <span class="muted"><b><%= pioneer.votes_point %></b></span>
+	  <% end %>
+	</td>
+	<td>
+      <%= link_to t(:edit), edit_pioneer_path(pioneer) %>
+	</td>
+	<td>
+	  <%= link_to t(:delete), pioneer, {
+		  :confirm => t(:are_you_sure),
+	      :method => :delete,
+	      :class => 'text-error'} %>
+	</td>
+  </tr>
+<% end %>
+</table>
+<% end %>

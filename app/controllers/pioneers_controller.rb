@@ -4,7 +4,8 @@ class PioneersController < ApplicationController
 
   def index
     @title = t(:my_pioneers)
-    @pioneers = current_user.pioneers.paginate(page: params[:page], per_page: 10)
+    @pioneers = current_user.pioneers.where(approved: true).order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
+    @pendings = current_user.pioneers.where(approved: false)
   end
 
   def vectors

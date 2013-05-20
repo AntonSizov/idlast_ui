@@ -47,3 +47,6 @@ ru:
   one_pioneer_type_limit_notification: "У вас уже есть один пендинг такого же типа. Прежде чем создавать нового засланца, удалите или переведите в статус принятого существующий пендинг."
   reset_pass: "Сброс пароля"
   send_me_reset_instructions: "Сбросить пароль"
+  pending_pioneers: "Ожидающие проверки"
+  approved_pioneers: "Принятые"
+  your_have_no_pioneers: "У вас нет ни одного засланца."
