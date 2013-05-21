@@ -5,7 +5,7 @@ class Ability
 
     if user # authorized user abilities
 
-      can [:vectors, :illustrations, :photos, :index, :create], Pioneer
+      can [:statistics, :vectors, :illustrations, :photos, :index, :create], Pioneer
       can [:vote_up, :vote_down], Pioneer
       # 'destroy' action raise mongoid excepion when
       # using load_and_authorize_resource
