@@ -6,6 +6,7 @@ Stui::Application.routes.draw do
   match 'photos' => 'pioneers#photos'
   match 'vectors' => 'pioneers#vectors'
   match 'illustrations' => 'pioneers#illustrations'
+  match 'statistics' => 'pioneers#statistics'
 
   # vote
   match 'pioneers/:id/vote_up' => 'pioneers#vote_up', :as => :vote_up

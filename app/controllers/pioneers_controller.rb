@@ -8,6 +8,10 @@ class PioneersController < ApplicationController
     @pendings = current_user.pioneers.where(approved: false)
   end
 
+  def statistics
+    @title = t(:statistic)
+  end
+
   def vectors
     @title = t(:vectors)
     @pioneers = Pioneer.where(approved: true, type: "vector").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)

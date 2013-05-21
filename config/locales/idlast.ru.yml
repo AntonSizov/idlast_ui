@@ -50,3 +50,6 @@ ru:
   pending_pioneers: "Ожидающие проверки"
   approved_pioneers: "Принятые"
   your_have_no_pioneers: "У вас нет ни одного засланца."
+  statistics: "Статистика"
+  may_vectors_plot: "График скорости приема векторов за май 2013г."
+  to_open_img: "Нажмите для увеличения"
