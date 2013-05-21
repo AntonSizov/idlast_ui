@@ -32,13 +32,15 @@ class Pioneer
 
   def predict_approved_datetime
     # this method implements simple y=kx+b expression
-    last_pioneers = Pioneer.where(approved: true).order_by(img_id:-1).limit(2).to_a
-    x1 = last_pioneers[0].img_id
-    y1 = last_pioneers[0].approved_at.to_i
-    x2 = last_pioneers[1].img_id
-    y2 = last_pioneers[1].approved_at.to_i
+    last = Pioneer.where(approved: true).order_by(img_id:-1).limit(1).to_a
+    x1 = last[0].img_id
+    y1 = last[0].approved_at.to_i
 
-    k = (y2 - y1) / (x2 - x1)
+    first = Pioneer.where(approved: true).order_by(img_id:-1).limit(1).skip(400).to_a
+    x2 = first[0].img_id
+    y2 = first[0].approved_at.to_i
+
+    k = (y2 - y1).to_f / (x2 - x1).to_f
     b = y1 - k * x1
 
     predict_utc_timestamp = k * self.img_id + b
