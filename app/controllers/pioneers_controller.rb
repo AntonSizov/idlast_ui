@@ -45,7 +45,7 @@ class PioneersController < ApplicationController
     @pioneer.approved_at = approved_at
     if @pioneer.save
       redirect_to(pioneers_path,
-                  :notice => 'Pioneer was successfully created.')
+                  :notice => t(:pioneer_created_msg))
     else
       render :action => "new"
     end
@@ -67,7 +67,7 @@ class PioneersController < ApplicationController
     end
 
     if @pioneer.update_attributes(params[:pioneer])
-      redirect_to(pioneers_path, :notice => 'Pioneer was successfully updated.')
+      redirect_to(pioneers_path, :notice => t(:pioneer_updated_msg))
     else
       render :action => "edit"
     end

@@ -11,9 +11,9 @@
     @user = User.find(current_user.id)
     if @user.update_with_password(params[:user])
       sign_in(@user, :bypass => true)
-      redirect_to(@user, :notice => 'Password successfully updated.')
+      redirect_to(@user, :notice => t(:pass_updated_msg))
     else
-      redirect_to(@user, :alert => 'Something went wrong!')
+      redirect_to(@user, :alert => t(:pass_update_err_msg))
     end
   end
 

@@ -32,6 +32,6 @@
 
 <% else %>
 
-<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
+<p><%= t(:no_pioneers) %> <%= link_to t(:add_new_pioneer), new_pioneer_path %></p>
 
 <% end %>
