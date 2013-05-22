@@ -31,12 +31,14 @@ class Pioneer
   end
 
   def predict_approved_datetime
+    return nil if self.type != 'vector'
+
     # this method implements simple y=kx+b expression
-    last = Pioneer.where(approved: true).order_by(img_id:-1).limit(1).to_a
+    last = Pioneer.where(approved: true, type: 'vector').order_by(img_id:-1).limit(1).to_a
     x1 = last[0].img_id
     y1 = last[0].approved_at.to_i
 
-    first = Pioneer.where(approved: true).order_by(img_id:-1).limit(1).skip(400).to_a
+    first = Pioneer.where(approved: true, type: 'vector').order_by(img_id:-1).limit(1).skip(400).to_a
     x2 = first[0].img_id
     y2 = first[0].approved_at.to_i
 

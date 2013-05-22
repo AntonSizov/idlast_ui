@@ -12,7 +12,8 @@
 	<td>
 	  <% if pioneer.approved? %>
 	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
-	  <% else %>
+	  <% end %>
+	  <% if !(pioneer.approved?) and pioneer.type == 'vector' %>
 	  <p class="muted"><%= pioneer.predict_approved_datetime.to_s(:pioneer_datetime) %></p>
 	  <% end %>
 	</td>
