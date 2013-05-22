@@ -17,4 +17,16 @@
     end
   end
 
+  def change_article_notification
+    user = User.find(current_user.id)
+    user.articles_notify = params[:user][:articles_notify]
+    respond_to do |format|
+      if user.save
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+
 end

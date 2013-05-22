@@ -10,5 +10,6 @@ class Article
   field :text,              :type => String, :default => ""
   field :user_name,         :type => String, :default => ""
   field :published,         :type => Boolean, :default => false
+  field :submitted,         :type => Boolean, :default => false
 
 end

@@ -19,3 +19,7 @@
 $(document).ready(function(){
 	document.cookie = 'jstz_time_zone='+jstz.determine().name()+';';
 });
+
+$('#user_articles_notify').click( function(e){
+  $(this).closest('form').submit();
+});

@@ -22,6 +22,7 @@ Stui::Application.routes.draw do
   resources :users do
     member do
       put :update_pass
+      put :change_article_notification
     end
   end
 

@@ -20,8 +20,18 @@
 	</p>
   </div>
 </div>
-
 <br \>
+
+<%= form_for @user, :url => {:action => 'change_article_notification'}, :html => {:id => 'change_article_notification'}, :remote => true do |f| %>
+  <fieldset>
+	<legend class="muted"><%= t(:notifications) %></legend>
+	<br />
+	<label class="checkbox" id="articles_notify">
+      <%= f.check_box :articles_notify %> <span><%= t(:articles_notify) %></span> <span class="muted" id="articles_notify_result"><span>
+	</label>
+  </fieldset>
+<% end %>
+<br />
 
 <%= form_for(@user, :url => {:action => 'update_pass'}) do |f| %>
 

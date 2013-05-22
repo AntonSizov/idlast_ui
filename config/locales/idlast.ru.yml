@@ -58,3 +58,5 @@ ru:
   pioneer_updated_msg: "Засланец был успешно обновлен"
   pass_updated_msg: "Пароль успешно обновлен"
   pass_update_err_msg: "Ошибка обновления пароля"
+  notifications: "Уведомления"
+  articles_notify: "Получать рассылку новостей idlast"

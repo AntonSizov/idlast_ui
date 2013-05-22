@@ -27,6 +27,7 @@ class User
   field :name,               type: String
   field :admin,              type: Boolean, default: false
   field :timezone
+  field :articles_notify,    type: Boolean, default: true
   field :email,              type: String
   field :encrypted_password, type: String
 
