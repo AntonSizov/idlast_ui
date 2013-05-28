@@ -1,0 +1,29 @@
+<li class="media comment" style="border-top:1px solid #CCC;padding-top:7px;" id=<%= dom_id(comment) %> >
+  <span class="pull-left">
+	<%= gravatar_image_tag(
+		comment.user_email,
+		:alt => comment.user_name,
+	:class => 'media-object gravatar',
+	:gravatar => { :size => 64 }) %>
+  </span>
+  <div class="media-body">
+	<strong class="text-info comment-author"><%= comment.user_name %></strong>
+	<% if current_user && (current_user.admin || (current_user.id == comment.user_id)) %>
+	<%= link_to article_comment_path(@article, comment),
+		:remote => true,
+	:method => :delete,
+	:title => t(:delete),
+	:class => 'pull-right comment-remove-btn comment-tools',
+	:style => 'display:none;' do %>
+	<i class="icon-remove"></i>
+	<% end %>
+	<% end %>
+	<p><%= simple_format(comment.content) %></p>
+	<small class="muted">
+	  <%= comment.created_at.to_s(:user_datetime) %>
+	  <% if user_signed_in? and (current_user.id != comment.user_id) %>
+	    | <span class="btn-link comment-reply-to"><%= t(:comment_reply_to) %></span>
+	  <% end %>
+	</small>
+  </div>
+</li>

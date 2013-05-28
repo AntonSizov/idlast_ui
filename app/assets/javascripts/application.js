@@ -14,12 +14,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-1.9.0.custom
+//= require jquery.NobleCount.min
+//= require jquery.autogrowtextarea
+//= require bootstrap.min
+//= require bootstrap
 //= require_tree .
 
 $(document).ready(function(){
 	document.cookie = 'jstz_time_zone='+jstz.determine().name()+';';
-});
-
-$('#user_articles_notify').click( function(e){
-  $(this).closest('form').submit();
 });

@@ -2,10 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-# gem 'sqlite3'
 gem "mongoid", "3.0.21"
 gem 'voteable_mongo', :git => 'https://github.com/dementrock/voteable_mongo.git'
 gem "devise", "2.2.3"
@@ -14,6 +10,7 @@ gem 'bootstrap-will_paginate'
 gem "quiet_assets", "1.0.1"
 gem "cancan", "1.6.9"
 gem 'gravatar_image_tag'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,8 +23,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

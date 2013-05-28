@@ -2,7 +2,9 @@
   <h3><%= article.title %></h3>
   <p class="muted">
 	<%= article.created_at.to_s(:user_datetime) %> |
-	<%= link_to "Comments: #{article.comments.count}", article_path(article, :anchor => "comments") %>
+	<%= link_to article_path(article, :anchor => "comments") do %>
+	  <%= t(:comments) %>: <span class="comments-number"><%= article.comments.count %></span>
+	<% end %>
   </p>
   <div><%= raw(article.text) %></div>
 </div>

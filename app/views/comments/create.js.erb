@@ -1,4 +1,5 @@
-$("#comment_content").val('');
-$("#comments-table").append("<%= escape_javascript(render('articles/comment_tr', :comment => @comment)) %>");
-$("#new_comment input.btn").val("Create comment");
-$("#new_comment input.btn").prop("disabled", null);
+$('#new_comment textarea').val('');
+$('#comments-list').append("<%= escape_javascript(render('articles/comment_li', :comment => @comment)) %>");
+$('#remained_symbols').html('1000');
+setup_comment_events();
+set_comments_number();

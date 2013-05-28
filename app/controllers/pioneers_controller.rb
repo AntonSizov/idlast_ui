@@ -9,7 +9,7 @@ class PioneersController < ApplicationController
   end
 
   def statistics
-    @title = t(:statistic)
+    @title = t(:statistics)
   end
 
   def vectors
