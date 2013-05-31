@@ -14,7 +14,7 @@ class Ability
       can :create, Comment
       can :destroy, Comment, user_id: user.id
 
-      can :show, User, id: user.id
+      can [:change_article_notification, :show], User, id: user.id
       can :update_pass, User
 
       if user.admin # admin user abilities
