@@ -46,9 +46,10 @@ function setup_comment_events() {
 
 	$('.comment-reply-to').on('click', function(){
 		var reply_to = $(this).closest('div .media-body').find('strong').html();
-		$('#new_comment textarea').html('');
-		$('#new_comment textarea').focus();
-		$('#new_comment textarea').html(reply_to + ', ');
+		var textarea = $('#new_comment textarea');
+		textarea.val('');
+		textarea.focus();
+		textarea.val(reply_to + ', ');
 	});
 
 };
