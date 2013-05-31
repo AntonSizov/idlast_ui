@@ -62,3 +62,4 @@ ru:
   pass_update_err_msg: "Ошибка обновления пароля"
   notifications: "Уведомления"
   articles_notify: "Получать рассылку новостей idlast"
+  current_timezon_offset: "Ваш часовой пояс: "
