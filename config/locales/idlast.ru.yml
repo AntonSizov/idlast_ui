@@ -24,6 +24,7 @@ ru:
   new_comment: "Новый комментарий"
   create_comment: "Создать комментарий"
   comment_reply_to: "Ответить"
+  show_all_comments: "Показать все комментарии"
   remained_symbols: "Осталось знаков"
   email_security_notification: "Ваш email скрыт для всех пользователей"
   change_password_h: "Изменить пароль"
