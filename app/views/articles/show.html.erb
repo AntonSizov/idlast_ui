@@ -3,6 +3,14 @@
 <h6><%= t(:comments) %> (<span class="comments-number"><%= @article.comments.length %></span>)</h6>
 <%= content_tag(:a, '', :name => 'comments') %>
 
+<% if @article.comments.length > 3 %>
+<p>
+  <div class="show-all-comments-btn btn-link" style="background-color:whiteSmoke;padding-top:4px;padding-bottom:4px;">
+	<center>Show all comments<center>
+  </div>
+</p>
+<% end %>
+
 <ul class="media-list" id="comments-list">
   <% @article.comments.each do |comment| %>
     <%= render 'comment_li', :comment => comment %>
