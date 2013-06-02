@@ -56,7 +56,11 @@
 	<br />
 	<%= f.label t(:approved_at) %>
 	<div class="input-append">
-      <%= f.text_field :approved_at %>
+	  <% if @pioneer.approved_at %>
+        <%= f.text_field :approved_at, :value => @pioneer.approved_at.strftime('%Y-%m-%d %H:%M') %>
+	  <% else %>
+        <%= f.text_field :approved_at %>
+	  <% end %>
 	  <span class="add-on"><i class="icon-time"></i></span>
 	</div>
 	</div>
