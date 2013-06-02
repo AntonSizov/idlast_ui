@@ -13,13 +13,37 @@
 //= require jstz-1.0.4.min
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.9.0.custom
+//= require jquery-ui.min
 //= require jquery.NobleCount.min
 //= require jquery.autogrowtextarea
 //= require bootstrap.min
 //= require bootstrap
+//= require jquery-ui-timepicker-addon
+//= require jquery-ui-sliderAccess
+//= require jquery-ui-timepicker-ru
 //= require_tree .
 
 $(document).ready(function(){
 	document.cookie = 'jstz_time_zone='+jstz.determine().name()+';';
 });
+
+$.datepicker.regional['ru'] = {
+	closeText: 'Закрыть',
+	prevText: '<Пред',
+	nextText: 'След>',
+	currentText: 'Сегодня',
+	monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+	'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+	monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+	'Июл','Авг','Сен','Окт','Ноя','Дек'],
+	dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+	dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+	dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+	weekHeader: 'Не',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['ru']);

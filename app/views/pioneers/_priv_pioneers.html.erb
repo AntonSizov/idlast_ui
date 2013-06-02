@@ -10,12 +10,15 @@
 	  <p><%= t(pioneer.type) %></p>
 	</td>
 	<td>
+	  <p>
 	  <% if pioneer.approved? %>
-	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <%= pioneer.approved_at.to_s(:pioneer_datetime) %>
 	  <% end %>
 	  <% if !(pioneer.approved?) and pioneer.type == 'vector' %>
-	  <p class="muted"><%= pioneer.predict_approved_datetime.to_s(:pioneer_datetime) %></p>
+	  <span class="muted"><%= pioneer.predict_approved_datetime.to_s(:pioneer_datetime) %></span>
 	  <% end %>
+      <br /><small class="muted">Загр: <%= pioneer.uploaded_at.to_s(:pioneer_datetime) %></small>
+	  </p>
 	</td>
 	<td>
 	  <% if pioneer.votes_point > 0 %>

@@ -7,7 +7,9 @@
 	  <p># <%= pioneer.masked_id %></p>
 	</td>
 	<td>
-	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %>
+	    <br /><small class="muted">Загр: <%= pioneer.uploaded_at.to_s(:pioneer_datetime) %></small>
+	  </p>
 	</td>
 	<td>
 	  <%= render 'vote', :pioneer => pioneer %>

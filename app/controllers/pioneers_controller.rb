@@ -33,16 +33,9 @@ class PioneersController < ApplicationController
   end
 
   def create
-    approved_at = Time.zone.local *flatten_datetime_array(params[:pioneer])
-
-    (1..5).each do |i|
-      params[:pioneer].delete("approved_at(#{i}i)")
-    end
-
     @pioneer = current_user.pioneers.new(params[:pioneer])
     @pioneer.user_name = current_user.name
     @pioneer.user_email = current_user.email
-    @pioneer.approved_at = approved_at
     if @pioneer.save
       redirect_to(pioneers_path,
                   :notice => t(:pioneer_created_msg))
@@ -58,14 +51,6 @@ class PioneersController < ApplicationController
 
   def update
     @pioneer = Pioneer.find(params[:id])
-
-    approved_at = Time.zone.local *flatten_datetime_array(params[:pioneer])
-    @pioneer.approved_at = approved_at
-    params[:pioneer][:approved_at] = approved_at
-
-    (1..5).each do |i|
-      params[:pioneer].delete("approved_at(#{i}i)")
-    end
 
     if @pioneer.update_attributes(params[:pioneer])
       redirect_to(pioneers_path, :notice => t(:pioneer_updated_msg))
@@ -96,12 +81,6 @@ class PioneersController < ApplicationController
       format.html { redirect_to request.referer }
       format.js
     end
-  end
-
-  private
-
-  def flatten_datetime_array hash
-    %w(1 2 3 4 5).map { |e| hash["approved_at(#{e}i)"].to_i }
   end
 
 end

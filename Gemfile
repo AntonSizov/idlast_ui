@@ -10,7 +10,7 @@ gem 'bootstrap-will_paginate'
 gem "quiet_assets", "1.0.1"
 gem "cancan", "1.6.9"
 gem 'gravatar_image_tag'
-gem 'jquery-rails'
+gem 'jquery-rails', "3.0.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
