@@ -12,7 +12,7 @@ class Pioneer
   field :type,        type: String
   field :approved,    type: Boolean, default: false
   field :approved_at, type: Time
-  field :uploaded_at, type: Time,    default: ->{ Time.now.utc }
+  field :uploaded_at, type: Time,    default: ->{ Time.now }
   field :user_name,   type: String
   field :user_email,  type: String
   field :submitted,   type: Boolean, default: false

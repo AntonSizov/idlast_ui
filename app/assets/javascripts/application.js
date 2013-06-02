@@ -47,3 +47,13 @@ $.datepicker.regional['ru'] = {
 	yearSuffix: ''
 };
 $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+function time_zone_info() {
+	return 'Часовой пояс определен автоматически. Если часовой пояс определен неверно, попробуйте выйти и зайти заново. В случае проблем, обращайтесь на support[at]idlast.com';
+};
+
+$('#timezone-info').tooltip({
+	html: true,
+	title: time_zone_info(),
+	placement: 'bottom'
+});
