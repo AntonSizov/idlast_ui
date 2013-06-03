@@ -6,7 +6,7 @@ class Pioneer
   before_save :mask_id
   belongs_to :user
 
-  attr_accessible :img_id, :type, :approved, :approved_at
+  attr_accessible :img_id, :type, :approved, :approved_at, :uploaded_at
 
   field :img_id,      type: Integer
   field :type,        type: String
