@@ -12,12 +12,12 @@
 	<td>
 	  <p>
 	  <% if pioneer.approved? %>
-	  <%= pioneer.approved_at.to_s(:pioneer_datetime) %>
+	  <%= pioneer.approved_at_formatted %>
 	  <% end %>
 	  <% if !(pioneer.approved?) and pioneer.type == 'vector' %>
-	  <span class="muted"><%= pioneer.predict_approved_datetime.to_s(:pioneer_datetime) %></span>
+	  <span class="muted"><%= pioneer.predict_approved_at_formatted %></span>
 	  <% end %>
-      <br /><small class="muted">Загр: <%= pioneer.uploaded_at.to_s(:pioneer_datetime) %></small>
+      <br /><small class="muted">Загр: <%= pioneer.uploaded_at_formatted %></small>
 	  </p>
 	</td>
 	<td>

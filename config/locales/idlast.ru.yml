@@ -45,6 +45,7 @@ ru:
   pioneer_id: "ID засланца"
   approved_at: "Время принятия"
   uploaded_at: "Время загрузки"
+  uploaded_at_short: "Загр: "
   is_approved: "Засланец принят, добавить время..."
   edit_pioneer: "Редактировать засланца"
   save: "Сохранить"
@@ -65,3 +66,4 @@ ru:
   notifications: "Уведомления"
   articles_notify: "Получать рассылку новостей idlast"
   current_timezon_offset: "Ваш часовой пояс: "
+  unavailable: "недоступно"

@@ -11,7 +11,7 @@
 	</td>
 	<td>
 	  <% if pioneer.approved? %>
-	  <p><%= pioneer.approved_at.to_s(:pioneer_datetime) %></p>
+	  <p><%= pioneer.approved_at_formatted %></p>
 	  <% else %>
 	  <p>pending</p>
 	  <% end %>

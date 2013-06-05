@@ -31,7 +31,7 @@ class Pioneer
     self.img_id.to_s[0...-3] << "***"
   end
 
-  def predict_approved_datetime
+  def predict_approved_at
     return nil if self.type != 'vector'
 
     # this method implements simple y=kx+b expression
@@ -64,6 +64,19 @@ class Pioneer
       errors.add(:base, "You already has #{self.type} pending item")
     end
 
+  end
+
+  def uploaded_at_formatted
+    return I18n.t(:unavailable) if self.user_name == 'IDLast.com'
+    self.uploaded_at.to_s(:pioneer_datetime)
+  end
+
+  def approved_at_formatted
+    self.approved_at.to_s(:pioneer_datetime)
+  end
+
+  def predict_approved_at_formatted
+    self.predict_approved_at.to_s(:pioneer_datetime)
   end
 
   private
