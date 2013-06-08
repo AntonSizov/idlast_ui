@@ -79,10 +79,29 @@ class Pioneer
     self.predict_approved_at.to_s(:pioneer_datetime)
   end
 
+  def on_the_road
+    return I18n.t(:unavailable) if self.user_name == 'IDLast.com'
+    return I18n.t(:unavailable) if !self.approved
+    substraction = self.approved_at - self.uploaded_at
+    return I18n.t(:unavailable) if substraction <= 0
+    road_hash = time_length(substraction)
+    return "#{road_hash[:days]} #{I18n.t(:on_the_road_days)} #{road_hash[:hours]} #{I18n.t(:on_the_road_hours)} #{road_hash[:minutes]} #{I18n.t(:on_the_road_minutes)}"
+  end
+
   private
 
   def mask_id
     self.img_id = (self.img_id.to_s[0...-3] + "000").to_i
+  end
+
+  def time_length seconds
+    days = (seconds / 1.day).floor
+    seconds -= days.days
+    hours = (seconds / 1.hour).floor
+    seconds -= hours.hours
+    minutes = (seconds / 1.minute).floor
+    seconds -= minutes.minutes
+    { days: days, hours: hours, minutes: minutes, seconds: seconds }
   end
 
 end

@@ -8,7 +8,8 @@
 	</td>
 	<td>
 	  <p><%= pioneer.approved_at_formatted %>
-	    <br /><small class="muted">Загр: <%= pioneer.uploaded_at_formatted %></small>
+	    <br /><small class="muted"><%= t(:uploaded_at_short) %><%= pioneer.uploaded_at_formatted %></small>
+		<br /><small class="muted"><%= t(:on_the_road) %><%= pioneer.on_the_road %></small>
 	  </p>
 	</td>
 	<td>

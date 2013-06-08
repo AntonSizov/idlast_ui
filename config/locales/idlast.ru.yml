@@ -67,3 +67,8 @@ ru:
   articles_notify: "Получать рассылку новостей idlast"
   current_timezon_offset: "Ваш часовой пояс: "
   unavailable: "недоступно"
+  on_the_road_days: "д."
+  on_the_road_hours: "ч."
+  on_the_road_minutes: "мин."
+  on_the_road: "В пути: "
+  remained: "Осталось "
