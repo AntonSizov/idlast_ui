@@ -6,6 +6,10 @@
 	<td>
 	  <p>
 		# <%= pioneer.img_id %>
+		<% if !pioneer.approved %>
+		<br />
+		<small><%= t(:works_before_approval) %><%= pioneer.works_before_approval %></small>
+		<% end %>
 	  </p>
 	</td>
 	<td>

@@ -88,6 +88,11 @@ class Pioneer
     return "#{road_hash[:days]} #{I18n.t(:on_the_road_days)} #{road_hash[:hours]} #{I18n.t(:on_the_road_hours)} #{road_hash[:minutes]} #{I18n.t(:on_the_road_minutes)}"
   end
 
+  def works_before_approval
+    last_approved = Pioneer.where(approved: true, type: self.type).order_by(img_id: -1).limit(1)
+    self.img_id - last_approved[0].img_id
+  end
+
   private
 
   def mask_id
