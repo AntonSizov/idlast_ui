@@ -73,3 +73,6 @@ ru:
   on_the_road: "В пути: "
   works_before_approval: "Осталось "
   probably_approved: "Вероятно принят"
+  img_id_validation: "ID засланца должен быть в пределах от 140000000 до 400000000"
+  chose_proper_pioneer_type: "Выберите тип засланца"
+  uploaded_at_should_be_less_than_approved_at: "Время загрузки должно быть меньше времени приема"

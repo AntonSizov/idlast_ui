@@ -18,10 +18,12 @@ class Pioneer
   field :submitted,   type: Boolean, default: false
 
   validate :limit_num_of_pendings
+  validate :uploaded_at_should_be_less_than_approved_at
 
-  validates_inclusion_of :type, in: [ 'vector', 'illustration', 'photo' ], message: "Chose item type"
-  validates_numericality_of :img_id, greater_than: 137000000,
-                            message: 'ID should be number greater than 137000000'
+  validates_inclusion_of :type, in: [ 'vector', 'illustration', 'photo' ],
+                          message: I18n.t(:chose_proper_pioneer_type)
+  validates_numericality_of :img_id, greater_than: 140000000, less_than: 400000000,
+                            message: I18n.t(:img_id_validation)
   validates_uniqueness_of :img_id
 
   voteable self, :up => +1, :down => -1
@@ -49,21 +51,6 @@ class Pioneer
     predict_utc_timestamp = k * self.img_id + b
 
     return Time.at(predict_utc_timestamp)
-  end
-
-  def limit_num_of_pendings
-    pendings = Pioneer.where(:user_id => self.user_id,
-                             :approved => false,
-                             :type => self.type)
-
-    for pending in pendings do
-      return true if pending.id == self.id
-    end
-
-    if pendings.length >= 1
-      errors.add(:base, "You already has #{self.type} pending item")
-    end
-
   end
 
   def uploaded_at_formatted
@@ -105,6 +92,27 @@ class Pioneer
   end
 
   private
+
+  def limit_num_of_pendings
+    pendings = Pioneer.where(:user_id => self.user_id,
+                             :approved => false,
+                             :type => self.type)
+
+    for pending in pendings do
+      return true if pending.id == self.id
+    end
+
+    if pendings.length >= 1
+      errors.add(:base, "You already has #{self.type} pending item")
+    end
+
+  end
+
+  def uploaded_at_should_be_less_than_approved_at
+    if self.approved? and (self.approved_at < self.uploaded_at)
+      errors.add(:base, I18n.t(:uploaded_at_should_be_less_than_approved_at))
+    end
+  end
 
   def mask_id
     self.img_id = (self.img_id.to_s[0...-3] + "000").to_i
