@@ -76,3 +76,5 @@ ru:
   img_id_validation: "ID засланца должен быть в пределах от 140000000 до 400000000"
   chose_proper_pioneer_type: "Выберите тип засланца"
   uploaded_at_should_be_less_than_approved_at: "Время загрузки должно быть меньше времени приема"
+  generated_by_idlast: "Сгенерировано с помощью idlast.com"
+  pioneer_text_for_forum: "Текст для форума"

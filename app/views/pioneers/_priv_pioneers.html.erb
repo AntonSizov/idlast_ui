@@ -11,8 +11,20 @@
 	  <p>
 		# <%= pioneer.img_id %>
 		<% if pioneer.pending? && !pioneer.probably_approved? %>
-		<br />
-		<small><%= t(:works_before_approval) %><%= pioneer.works_before_approval %></small>
+		  <br />
+		  <small>
+			<%= t(:works_before_approval) %><%= pioneer.works_before_approval %>
+		  </small>
+		<% end %>
+		<% if pioneer.approved? %>
+		  <br />
+		  <%= link_to '#',
+			  :'data-content' => pioneer.share_text,
+		      :'data-html' => true,
+		      :class => 'pioneer-share-text btn btn-link btn-small' do %>
+		    <%= t(:pioneer_text_for_forum) %>
+		  <% end %>
+
 		<% end %>
 	  </p>
 	</td>

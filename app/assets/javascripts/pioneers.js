@@ -34,3 +34,5 @@ function get_formatted_now(){
 	var formatted_time = $.datepicker.formatTime('HH:mm', time_obj, {});
 	return formatted_date + ' ' + formatted_time
 };
+
+$('.pioneer-share-text').popover();
