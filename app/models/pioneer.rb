@@ -90,7 +90,18 @@ class Pioneer
 
   def works_before_approval
     last_approved = Pioneer.where(approved: true, type: self.type).order_by(img_id: -1).limit(1)
-    self.img_id - last_approved[0].img_id
+    return self.img_id - last_approved[0].img_id
+  end
+
+  def probably_approved?
+    return false if self.approved
+    last_approved = Pioneer.where(approved: true, type: self.type).order_by(img_id: -1).limit(1)
+    return true if self.img_id < last_approved[0].img_id
+    return false
+  end
+
+  def pending?
+    !self.approved?
   end
 
   private

@@ -2,11 +2,15 @@
 <h3><%= title %></h3>
 <table class="table table-striped">
 <% pioneers.each do |pioneer| %>
+  <% if pioneer.probably_approved? %>
+  <tr class="warning">
+  <% else %>
   <tr>
+  <% end %>
 	<td>
 	  <p>
 		# <%= pioneer.img_id %>
-		<% if !pioneer.approved %>
+		<% if pioneer.pending? && !pioneer.probably_approved? %>
 		<br />
 		<small><%= t(:works_before_approval) %><%= pioneer.works_before_approval %></small>
 		<% end %>
@@ -18,13 +22,16 @@
 	<td>
 	  <p>
 	  <% if pioneer.approved? %>
-	  <%= pioneer.approved_at_formatted %>
+	    <%= pioneer.approved_at_formatted %>
 	  <% end %>
-	  <% if !(pioneer.approved?) and pioneer.type == 'vector' %>
+	  <% if pioneer.pending? and pioneer.type == 'vector' && !pioneer.probably_approved? %>
 	  <span class="muted"><%= pioneer.predict_approved_at_formatted %></span>
 	  <% end %>
+	  <% if pioneer.probably_approved? %>
+	    <span class="text-info"><%= t(:probably_approved) %></span>
+	  <% end %>
       <br /><small class="muted"><%= t(:uploaded_at_short) %><%= pioneer.uploaded_at_formatted %></small>
-	  <% if pioneer.approved %>
+	  <% if pioneer.approved? %>
 	  <br /><small class="muted"><%= t(:on_the_road) %><%= pioneer.on_the_road %></small>
 	  <% end %>
 	  </p>
