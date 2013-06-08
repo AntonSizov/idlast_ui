@@ -78,3 +78,5 @@ ru:
   uploaded_at_should_be_less_than_approved_at: "Время загрузки должно быть меньше времени приема"
   generated_by_idlast: "Сгенерировано с помощью idlast.com"
   pioneer_text_for_forum: "Текст для форума"
+  idlast_promo_text: "<strong>Внимание конкурс!</strong> Выйграйте подписку в программе Stocksubmitter или деньги."
+  more: "Подробнее..."
