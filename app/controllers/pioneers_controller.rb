@@ -66,19 +66,17 @@ class PioneersController < ApplicationController
   end
 
   def vote_up
-    Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :up)
     @pioneer = Pioneer.find(params[:id])
+    @pioneer.vote(voter: current_user, value: :up) if @pioneer.voteble?
     respond_to do |format|
-      format.html { redirect_to request.referer }
       format.js
     end
   end
 
   def vote_down
-    Pioneer.vote(:voter_id => current_user.id, :votee_id => params[:id], :value => :down)
     @pioneer = Pioneer.find(params[:id])
+    @pioneer.vote(voter: current_user, value: :down) if @pioneer.voteble?
     respond_to do |format|
-      format.html { redirect_to request.referer }
       format.js
     end
   end
