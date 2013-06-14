@@ -29,4 +29,15 @@
     end
   end
 
+  def unvote_kotkoa
+    user = User.where(name: "Kotkoa").to_a[0]
+    puts "target user: #{user.name}"
+    pioneers = Pioneer.where(user_name: "IDLast.com", approved: true, :img_id.gt => 138082000)
+    puts "pioneers count: #{pioneers}"
+
+    pioneers.each do |p|
+      user.unvote(p) if user.voted?(p)
+    end
+
+  end
 end

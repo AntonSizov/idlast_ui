@@ -98,6 +98,11 @@ class Pioneer
     "#{self.masked_id} #{I18n.t(self.type)}<br />#{self.uploaded_at_formatted} - #{self.approved_at_formatted}<br />#{I18n.t(:on_the_road)}#{road_hash[:days]} #{I18n.t(:on_the_road_days)} #{road_hash[:hours]} #{I18n.t(:on_the_road_hours)}<br />#{I18n.t(:generated_by_idlast)}"
   end
 
+  def voteble?
+   return true if self.approved && (self.approved_at > 1.day.ago)
+   false
+  end
+
   private
 
   def limit_num_of_pendings
