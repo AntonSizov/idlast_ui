@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :redirect_to_microstock
   before_filter :set_timezone
   protect_from_forgery
 
@@ -20,6 +21,12 @@ class ApplicationController < ActionController::Base
       else
         Time.zone = config.time_zone
       end
+    end
+
+    def redirect_to_microstock
+      request_uri = env["REQUEST_URI"]
+      redirect_to_uri = request_uri.sub('idlast.com', 'idlast.microstock.ru')
+      redirect_to redirect_to_uri if request.host == 'idlast.com'
     end
 
   # def deny_access

@@ -3,7 +3,7 @@ module ApplicationHelper
   ALERT_TYPES = [:error, :info, :success, :warning]
 
   def title
-    base_title = "IDLast.com"
+    base_title = "IDLast"
     if @title.nil?
       base_title
     else
