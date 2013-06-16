@@ -60,8 +60,10 @@ $('#new_comment textarea').autoGrow();
 
 function hide_old_coments(){
 	all_comments = $('li.comment');
-	hide_comments = all_comments.slice(0,all_comments.length-3);
-	hide_comments.hide();
+	if (all_comments.length > 3) {
+		hide_comments = all_comments.slice(0,all_comments.length-3);
+		hide_comments.hide();
+	};
 	$('.show-all-comments-btn').on('click',function(){
 		$(this).hide();
 		hide_comments.slideDown();
