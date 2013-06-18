@@ -18,6 +18,9 @@
 		</ul> <!-- ul class nav -->
 		<% if user_signed_in? %>
 		<ul class="nav pull-right">
+		  <% if current_user.timezone_presented? %>
+		    <li><%= link_to Time.zone.to_s, '#' %></li>
+		  <% end %>
 		  <li><%= link_to t(:my_profile_h), user_path(current_user) %></li>
 		  <li><%= link_to t(:sign_out), destroy_user_session_path, :method => :delete %></li>
 		<% else %>
