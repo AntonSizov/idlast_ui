@@ -10,6 +10,10 @@ class User
   has_many :articles
   has_many :pioneers
 
+  scope :admins, where(admin: true)
+
+  after_create :notify_new_user
+
   attr_accessible :name, :email, :password
   attr_readonly :admin
 
@@ -77,6 +81,12 @@ class User
   def timezone_presented?
     return false if !self.timezone
     true
+  end
+
+  private
+
+  def notify_new_user
+    UserMailer.new_user_notify(self).deliver
   end
 
 end

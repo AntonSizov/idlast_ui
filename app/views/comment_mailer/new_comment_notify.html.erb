@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+	<p>
+	  New comment on <a href="http://idlast.microstock.ru/articles/<%= @comment.article.id %>#comments"><%= @comment.article.title %></a>
+	</p>
+	<p>
+	  <%= @comment.content %>
+    <p>
+	  Author name: <%= @comment.user_name %>
+	  <br />
+	  Author e-mail: <%= @comment.user_email %>
+	</p>
+  </body>
+</html>
