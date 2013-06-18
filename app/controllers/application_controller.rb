@@ -14,13 +14,13 @@ class ApplicationController < ActionController::Base
   private
 
     def set_timezone
-      if current_user
+
+      flash[:alert] = t(:set_timezone) if user_signed_in? && !(current_user.timezone_presented?)
+
+      if user_signed_in? && current_user.timezone_presented?
         Time.zone = current_user.timezone
-      elsif jstz_time_zone = cookies["jstz_time_zone"]
-        Time.zone = jstz_time_zone
-      else
-        Time.zone = config.time_zone
       end
+
     end
 
     def redirect_to_microstock

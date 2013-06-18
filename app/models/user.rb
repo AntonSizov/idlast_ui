@@ -26,7 +26,7 @@ class User
   ## Database authenticatable
   field :name,               type: String
   field :admin,              type: Boolean, default: false
-  field :timezone
+  field :timezone,           type: String
   field :articles_notify,    type: Boolean, default: true
   field :email,              type: String
   field :encrypted_password, type: String
@@ -72,6 +72,11 @@ class User
     else
       return true
     end
+  end
+
+  def timezone_presented?
+    return false if !self.timezone
+    true
   end
 
 end

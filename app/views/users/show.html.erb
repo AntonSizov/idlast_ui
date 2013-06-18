@@ -27,10 +27,26 @@
 	<legend class="muted"><%= t(:notifications) %></legend>
 	<br />
 	<label class="checkbox" id="articles_notify">
-      <%= f.check_box :articles_notify %> <span><%= t(:articles_notify) %></span> <span class="muted" id="articles_notify_result"><span>
+      <%= f.check_box :articles_notify %> <span><%= t(:articles_notify) %></span> <span class="muted" id="articles_notify_result" style="display:none;"><%= t(:saved) %><span>
 	</label>
   </fieldset>
 <% end %>
+<br />
+
+  <fieldset>
+	<legend class="muted"><%= t(:timezone_settings) %></legend>
+
+	<div id="time_zone_select">
+	  <br />
+	  <%= form_for @user,
+		  :url => {:action => 'change_timezone'},
+	      :html => {:id => 'change_timezone'},
+	      :remote => true do |f| %>
+	  <%= f.time_zone_select :timezone %> <span class="muted" id="change_timezone_result" style="display:none;"><%= t(:saved) %><span>
+	  <% end %>
+	</div>
+
+  </fieldset>
 <br />
 
 <%= form_for(@user, :url => {:action => 'update_pass'}) do |f| %>

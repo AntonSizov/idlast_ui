@@ -40,4 +40,17 @@
     end
 
   end
+
+  def change_timezone
+    user = User.find(current_user.id)
+    user.timezone = params[:user][:timezone]
+    respond_to do |format|
+      if user.save
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+
 end

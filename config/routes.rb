@@ -19,11 +19,12 @@ Stui::Application.routes.draw do
     resources :comments
   end
 
-  devise_for :users, :controllers => { :sessions => "devise_custom/sessions" }
+  devise_for :users
   resources :users do
     member do
       put :update_pass
       put :change_article_notification
+      put :change_timezone
     end
   end
 

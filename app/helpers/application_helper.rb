@@ -11,14 +11,6 @@ module ApplicationHelper
     end
   end
 
-  def current_user_gmt_offset
-    offset = Time.zone.now.gmt_offset
-    label = t(:current_timezon_offset)
-    return "#{label}#{offset} GMT" if offset == 0
-    return "#{label}+#{offset/3600} GMT" if offset > 0
-    return "#{label}-#{offset/3600} GMT" if offset < 0
-  end
-
   def li_link_to(title, path)
     # path is path of nav item, i.e. /articles for articles resource
     # active = { class: "active" } if request.fullpath.index(path)

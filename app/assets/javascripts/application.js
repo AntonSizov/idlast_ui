@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jstz-1.0.4.min
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui.min
@@ -22,10 +21,6 @@
 //= require jquery-ui-sliderAccess
 //= require jquery-ui-timepicker-ru
 //= require_tree .
-
-$(document).ready(function(){
-	document.cookie = 'jstz_time_zone='+jstz.determine().name()+';';
-});
 
 $.datepicker.regional['ru'] = {
 	closeText: 'Закрыть',
@@ -47,13 +42,3 @@ $.datepicker.regional['ru'] = {
 	yearSuffix: ''
 };
 $.datepicker.setDefaults($.datepicker.regional['ru']);
-
-function time_zone_info() {
-	return 'Часовой пояс определен автоматически. Если часовой пояс определен неверно, попробуйте выйти и зайти заново. В случае проблем, обращайтесь на support[at]idlast.com';
-};
-
-$('#timezone-info').tooltip({
-	html: true,
-	title: time_zone_info(),
-	placement: 'bottom'
-});
