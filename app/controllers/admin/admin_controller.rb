@@ -1,11 +1,13 @@
 class Admin::AdminController < ApplicationController
 
-layout 'admin/app'
+  layout 'admin/app'
 
-before_filter :only_admin
+  before_filter :only_admin
 
-private
+  private
+
   def only_admin
-    redirect_to(user_path(current_user), :alert => 'Access denied') if !current_user.admin
+    redirect_to(user_path(current_user), alert: 'Access denied') if !current_user.admin?
   end
+
 end

@@ -2,7 +2,7 @@
 
   def index
     @title = t(:blog_h)
-    @articles = Article.where(:published => true).order_by(created_at: -1).paginate(:page => params[:page], :per_page => 5)
+    @articles = Article.published_sorted_by_created_at.paginate(page: params[:page], per_page: 5)
   end
 
   def show

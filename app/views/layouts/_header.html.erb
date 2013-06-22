@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to root_path, :class => "brand" do %>
+      <%= link_to root_path, class: "brand" do %>
 	  <span>IDLast
 		<sup> <i>microstock.ru</i></sup>
 	  </span>
@@ -22,14 +22,14 @@
 		    <li><%= link_to Time.zone.to_s, '#' %></li>
 		  <% end %>
 		  <li><%= link_to t(:my_profile_h), user_path(current_user) %></li>
-		  <li><%= link_to t(:sign_out), destroy_user_session_path, :method => :delete %></li>
+		  <li><%= link_to t(:sign_out), destroy_user_session_path, method: :delete %></li>
 		<% else %>
 
         <ul class="nav pull-right">
 
 		  <!--doesn't show signup btn at home page and at signup page -->
 		  <% if (controller_name != 'pages' && action_name != 'home') && controller_name != 'registrations' %>
-		  <li><div><%= link_to t(:sign_up), new_user_registration_path, :class => "btn btn-success" %></div></li>
+		  <li><div><%= link_to t(:sign_up), new_user_registration_path, class: "btn btn-success" %></div></li>
 		  <% end %>
 
 		  <!-- doesn't show divider at sigin/sigup/home pages -->
@@ -42,7 +42,7 @@
 
 		  <!-- doesn't show sigin btn at sigin page -->
 		  <% if controller_name != 'sessions' %>
-		  <li><div><%= link_to t(:sign_in), new_user_session_path, :class => "btn" %></div></li>
+		  <li><div><%= link_to t(:sign_in), new_user_session_path, class: "btn" %></div></li>
 		  <% end %>
         </ul>
 		<% end %>

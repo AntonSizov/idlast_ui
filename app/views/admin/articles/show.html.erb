@@ -1,17 +1,17 @@
-<%= render 'article', :article => @article %>
+<%= render 'article', article: @article %>
 
 <h4>Comments</h4>
-<%= content_tag(:a, '', :name => 'comments') %>
+<%= content_tag(:a, '', name: 'comments') %>
 <table id="comments-table" class="table table-striped">
   <% @article.comments.each do |comment| %>
-    <%= render 'comment_tr', :comment => comment %>
+    <%= render 'comment_tr', comment: comment %>
   <% end %>
 </table>
 
 <h4>New Comment</h4>
-<%= form_for [@article, Comment.new], :remote => true do |f| %>
+<%= form_for [@article, Comment.new], remote: true do |f| %>
   <fieldset>
-  <p><%= f.text_area :content, :rows => 4, :style => 'width: 600px' %></p>
-  <%= f.submit 'Create comment', :class => 'btn' %>
+  <p><%= f.text_area :content, rows: 4, style: 'width: 600px' %></p>
+  <%= f.submit 'Create comment', class: 'btn' %>
   </fieldset>
 <% end %>

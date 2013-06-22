@@ -15,15 +15,15 @@
 	  </p>
 	</td>
 	<td>
-	  <%= render 'vote', :pioneer => pioneer %>
+	  <%= render 'vote', pioneer: pioneer %>
 	</td>
 	<td>
 	  <p>
 		<%= gravatar_image_tag(
 			 pioneer.user_email,
-			 :alt => pioneer.user_name,
-		     :class => 'gravatar',
-		     :gravatar => { :size => 25 }) %>
+			 alt: pioneer.user_name,
+		     class: 'gravatar',
+		     gravatar: { size: 25 }) %>
 		<%= pioneer.user_name %>
 		<sup> <%= pioneer.user.votes_point %></sup>
 	  </p>

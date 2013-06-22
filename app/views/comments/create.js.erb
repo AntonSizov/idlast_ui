@@ -1,5 +1,5 @@
 $('#new_comment textarea').val('');
-$('#comments-list').append("<%= escape_javascript(render('articles/comment_li', :comment => @comment)) %>");
+$('#comments-list').append("<%= escape_javascript(render('articles/comment_li', comment: @comment)) %>");
 $('#remained_symbols').html('1000');
 setup_comment_events();
 set_comments_number();

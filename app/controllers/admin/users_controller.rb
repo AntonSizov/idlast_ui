@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::AdminController
 
   def index
     @title = "All users"
-    @users = User.order_by(created_at: -1).paginate(:page => params[:page], :per_page => 20)
+    @users = User.sorted_by_created_at.paginate(page: params[:page], per_page: 20)
     authorize! :index, @users
   end
 
@@ -25,9 +25,9 @@ class Admin::UsersController < Admin::AdminController
     @user = User.new(params[:user])
     authorize! :create, @user
     if @user.save
-      redirect_to(@user, :notice => 'User was successfully created.')
+      redirect_to(@user, notice: 'User was successfully created.')
     else
-      render :action => "new"
+      render action: "new"
     end
   end
 

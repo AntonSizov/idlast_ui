@@ -2,7 +2,7 @@ class Admin::ArticlesController < Admin::AdminController
 
   def index
     @title = "Blog"
-    @articles = Article.order_by(created_at: -1).paginate(:page => params[:page], :per_page => 5)
+    @articles = Article.sorted_by_created_at.paginate(page: params[:page], per_page: 5)
     authorize! :index, @articles
   end
 
@@ -30,9 +30,9 @@ class Admin::ArticlesController < Admin::AdminController
     authorize! :create, @article
     if @article.save
       redirect_to(admin_articles_url,
-                  :notice => 'Article was successfully created.')
+                  notice: 'Article was successfully created.')
     else
-      render :action => "new"
+      render action: "new"
     end
   end
 
@@ -40,9 +40,9 @@ class Admin::ArticlesController < Admin::AdminController
     @article = Article.find(params[:id])
     authorize! :edit, @article
     if @article.update_attributes(params[:article])
-      redirect_to([:admin, @article], :notice => 'Article was successfully updated.')
+      redirect_to([:admin, @article], notice: 'Article was successfully updated.')
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

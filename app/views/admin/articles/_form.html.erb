@@ -1,5 +1,5 @@
 <%= form_for [:admin, @article] do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <fieldset>
 
@@ -8,7 +8,7 @@
     <%= f.text_field :title %>
 
     <%= f.label :text %>
-    <%= f.text_area :text, :rows => 17, :style => "width: 800px" %>
+    <%= f.text_area :text, rows: 17, style: "width: 800px" %>
 
     <label class="checkbox">
 	  <%= f.check_box :published %> Published

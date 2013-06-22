@@ -21,7 +21,7 @@
 		  <%= link_to '#',
 			  :'data-content' => pioneer.share_text,
 		      :'data-html' => true,
-		      :class => 'pioneer-share-text btn btn-link btn-small' do %>
+		      class: 'pioneer-share-text btn btn-link btn-small' do %>
 		    <%= t(:pioneer_text_for_forum) %>
 		  <% end %>
 
@@ -62,9 +62,9 @@
 	</td>
 	<td>
 	  <%= link_to t(:delete), pioneer, {
-		  :confirm => t(:are_you_sure),
-	      :method => :delete,
-	      :class => 'text-error'} %>
+		  confirm: t(:are_you_sure),
+	      method: :delete,
+	      class: 'text-error'} %>
 	</td>
   </tr>
 <% end %>

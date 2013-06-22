@@ -11,6 +11,7 @@ class User
   has_many :pioneers
 
   scope :admins, where(admin: true)
+  scope :sorted_by_created_at, order_by(created_at: -1)
 
   after_create :notify_new_user
 
@@ -64,13 +65,13 @@ class User
   # field :authentication_token, :type => String
 
   def can_add_pioneer? type
-    pendings = self.pioneers.where(:type => type, :approved => false).count
+    pendings = self.pioneers.pendings_of_type(type).count
     return false if pendings >= MAX_PENDING_ITEMS_PER_TYPE
     return true
   end
 
   def can_add_pioneers?
-    pendings = self.pioneers.where(:approved => false).count
+    pendings = self.pioneers.pending.count
     if pendings >= (MAX_PENDING_ITEMS_PER_TYPE * 3)
       return false
     else

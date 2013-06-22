@@ -7,7 +7,6 @@ Stui::Application.routes.draw do
   match 'vectors' => 'pioneers#vectors'
   match 'illustrations' => 'pioneers#illustrations'
   match 'statistics' => 'pioneers#statistics'
-  match 'unvote' => 'users#unvote_kotkoa' #temp
 
   # vote
   match 'pioneers/:id/vote_up' => 'pioneers#vote_up', :as => :vote_up

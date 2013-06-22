@@ -3,7 +3,7 @@
   <% if current_user.voted?(pioneer) || !pioneer.voteble? %>
     <i style="visibility:hidden;" class="icon-arrow-up muted"></i>
   <% else %>
-    <%= link_to vote_up_path(pioneer), :remote => true do %>
+    <%= link_to vote_up_path(pioneer), remote: true do %>
       <i style="text-decoration:none;"  class="icon-arrow-up"></i>
     <% end %>
   <% end %>
@@ -19,7 +19,7 @@
   <% if current_user.voted?(pioneer) || !pioneer.voteble? %>
 	 <i style="visibility:hidden;" class="icon-arrow-down muted"></i>
   <% else %>
-	<%= link_to vote_down_path(pioneer), :remote => true do %>
+	<%= link_to vote_down_path(pioneer), remote: true do %>
       <i style="text-decoration:none;" class="icon-arrow-down"></i>
     <% end %>
   <% end %>

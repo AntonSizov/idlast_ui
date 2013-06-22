@@ -8,17 +8,17 @@
   </div> <!-- span8 -->
   <div class="span3 offset1">
 	<div class="form-container" style="padding-top:60px;">
-	  <%= form_for(User.new, :url => user_registration_path, :html => { :class => "home-form-signin"}) do |f| %>
-	  <%= f.text_field :name, :autofocus => true, :placeholder => t(:pick_username),
-	  :class => "input-block-level" %>
+	  <%= form_for(User.new, url: user_registration_path, html: { class: "home-form-signin"}) do |f| %>
+	  <%= f.text_field :name, autofocus: true, placeholder: t(:pick_username),
+	  class: "input-block-level" %>
 
-	  <%= f.email_field :email, :placeholder => t(:your_email),
-	  :class => "input-block-level" %>
+	  <%= f.email_field :email, placeholder: t(:your_email),
+	  class: "input-block-level" %>
 
-	  <%= f.password_field :password, :placeholder => t(:create_pass),
-	  :class => "input-block-level"  %>
+	  <%= f.password_field :password, placeholder: t(:create_pass),
+	  class: "input-block-level"  %>
 
-	  <%= f.submit t(:sign_up), :class => "btn btn-large btn-success" %>
+	  <%= f.submit t(:sign_up), class: "btn btn-large btn-success" %>
 	  <% end %>
 	</div> <!-- form-container -->
   </div> <!-- span4-->

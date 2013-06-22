@@ -2,9 +2,9 @@
   <div class="span3">
 	<%= gravatar_image_tag(
 		@user.email,
-		:alt => @user.name,
-	:class => 'img-polaroid',
-	:gravatar => { :size => 210 }) %>
+		alt: @user.name,
+		class: 'img-polaroid',
+		gravatar: { size: 210 }) %>
   </div>
   <div class="span5 offset1">
 	<h3>
@@ -22,7 +22,7 @@
 </div>
 <br \>
 
-<%= form_for @user, :url => {:action => 'change_article_notification'}, :html => {:id => 'change_article_notification'}, :remote => true do |f| %>
+<%= form_for @user, url: {action: 'change_article_notification'}, html: {id: 'change_article_notification'}, remote: true do |f| %>
   <fieldset>
 	<legend class="muted"><%= t(:notifications) %></legend>
 	<br />
@@ -39,9 +39,9 @@
 	<div id="time_zone_select">
 	  <br />
 	  <%= form_for @user,
-		  :url => {:action => 'change_timezone'},
-	      :html => {:id => 'change_timezone'},
-	      :remote => true do |f| %>
+		  url: {action: 'change_timezone'},
+	      html: {id: 'change_timezone'},
+	      remote: true do |f| %>
 	  <%= f.time_zone_select :timezone %> <span class="muted" id="change_timezone_result" style="display:none;"><%= t(:saved) %><span>
 	  <% end %>
 	</div>
@@ -49,26 +49,26 @@
   </fieldset>
 <br />
 
-<%= form_for(@user, :url => {:action => 'update_pass'}) do |f| %>
+<%= form_for(@user, url: {action: 'update_pass'}) do |f| %>
 
-  <%= render 'shared/error_messages', :object => f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <fieldset>
   <legend class="muted"><%= t(:change_password_h) %></legend>
   <br \>
 
   <div class="field">
-   <%= f.password_field :current_password, :placeholder => t(:your_cur_pass) %>
+   <%= f.password_field :current_password, placeholder: t(:your_cur_pass) %>
   </div>
   <div class="field">
-    <%= f.password_field :password, :placeholder => t(:create_new_pass) %>
+    <%= f.password_field :password, placeholder: t(:create_new_pass) %>
   </div>
   <div class="field">
-    <%= f.password_field :password_confirmatio,	:placeholder => t(:confirm_pass) %>
+    <%= f.password_field :password_confirmation, placeholder: t(:confirm_pass) %>
   </div>
 
   <div class="actions">
-    <%= f.submit t(:change_my_password), :class => 'btn' %>
+    <%= f.submit t(:change_my_password), class: 'btn' %>
   </div>
   </fieldset>
 <% end %>

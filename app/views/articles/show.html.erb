@@ -1,7 +1,7 @@
-<%= render 'article', :article => @article %>
+<%= render 'article', article: @article %>
 
 <h6><%= t(:comments) %> (<span class="comments-number"><%= @article.comments.length %></span>)</h6>
-<%= content_tag(:a, '', :name => 'comments') %>
+<%= content_tag(:a, '', name: 'comments') %>
 
 <% if @article.comments.length > 3 %>
 <p>
@@ -13,28 +13,28 @@
 
 <ul class="media-list" id="comments-list">
   <% @article.comments.each do |comment| %>
-    <%= render 'comment_li', :comment => comment %>
+    <%= render 'comment_li', comment: comment %>
   <% end %>
 </ul>
 
 <% if user_signed_in? %>
-<%= form_for [@article, Comment.new], :remote => true  do |f| %>
+<%= form_for [@article, Comment.new], remote: true  do |f| %>
 <div class="media">
       <span class="pull-left">
 		<%= gravatar_image_tag(
 			 current_user.email,
-			 :alt => current_user.name,
-		     :class => 'media-object gravatar',
-		     :gravatar => { :size => 64 }) %>
+			 alt: current_user.name,
+		     class: 'media-object gravatar',
+		     gravatar: { size: 64 }) %>
       </span>
 	  <div class="media-body">
 
 <fieldset>
-  <p><%= f.text_area :content, :rows => 4, :style => 'resize:none;width:600px' %></p>
+  <p><%= f.text_area :content, rows: 4, style: 'resize:none;width:600px' %></p>
   <p class="muted">
 	<small><%= t(:remained_symbols) %>: </small><small id="remained_symbols"></small>
   </p>
-  <%= f.submit "#{t(:save)} (Ctrl + Enter)", :class => 'btn', :disabled => '' %>
+  <%= f.submit "#{t(:save)} (Ctrl + Enter)", class: 'btn', disabled: '' %>
 </fieldset>
 </div>
 </div>

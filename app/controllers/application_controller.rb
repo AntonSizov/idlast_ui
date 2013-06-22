@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   before_filter :redirect_to_microstock
   before_filter :set_timezone
   protect_from_forgery

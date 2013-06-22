@@ -1,14 +1,15 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+
   embedded_in :article
 
   attr_accessible :content
 
-  field :content,        :type => String
-  field :user_id,        :type => Moped::BSON::ObjectId
-  field :user_name,      :type => String
-  field :user_email,     :type => String
+  field :content,        type: String
+  field :user_id,        type: Moped::BSON::ObjectId
+  field :user_name,      type: String
+  field :user_email,     type: String
 
   after_create :notify_new_comment
 

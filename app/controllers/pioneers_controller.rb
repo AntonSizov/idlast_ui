@@ -4,8 +4,8 @@ class PioneersController < ApplicationController
 
   def index
     @title = t(:my_pioneers)
-    @pioneers = current_user.pioneers.where(approved: true).order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
-    @pendings = current_user.pioneers.where(approved: false)
+    @pioneers = current_user.pioneers.approved_sorted_by_img_id.paginate(page: params[:page], per_page: 10)
+    @pendings = current_user.pioneers.pending
   end
 
   def statistics
@@ -14,17 +14,17 @@ class PioneersController < ApplicationController
 
   def vectors
     @title = t(:vectors)
-    @pioneers = Pioneer.where(approved: true, type: "vector").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
+    @pioneers = Pioneer.approved_vectors_sorted_by_img_id.paginate(page: params[:page], per_page: 10)
   end
 
   def illustrations
     @title = t(:illustrations)
-    @pioneers = Pioneer.where(approved: true, type: "illustration").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
+    @pioneers = Pioneer.approved_illustrations_sorted_by_img_id.paginate(page: params[:page], per_page: 10)
   end
 
   def photos
     @title = t(:photos)
-    @pioneers = Pioneer.where(approved: true, type: "photo").order_by(img_id: -1).paginate(page: params[:page], per_page: 10)
+    @pioneers = Pioneer.approved_photos_sorted_by_img_id.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -37,10 +37,9 @@ class PioneersController < ApplicationController
     @pioneer.user_name = current_user.name
     @pioneer.user_email = current_user.email
     if @pioneer.save
-      redirect_to(pioneers_path,
-                  :notice => t(:pioneer_created_msg))
+      redirect_to(pioneers_path, notice: t(:pioneer_created_msg))
     else
-      render :action => "new"
+      render action: "new"
     end
   end
 
@@ -53,9 +52,9 @@ class PioneersController < ApplicationController
     @pioneer = Pioneer.find(params[:id])
 
     if @pioneer.update_attributes(params[:pioneer])
-      redirect_to(pioneers_path, :notice => t(:pioneer_updated_msg))
+      redirect_to(pioneers_path, notice: t(:pioneer_updated_msg))
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

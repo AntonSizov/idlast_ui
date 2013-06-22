@@ -2,13 +2,10 @@
   <h3><%= article.title %></h3>
   <p class="muted">
 	<%= article.created_at.to_s(:user_datetime) %> |
-	<%= link_to "Comments: #{article.comments.count}", article_path(article, :anchor => "comments") %>
-
-	<% if current_user && current_user.admin %>
-	  | <% if article.published? %>Published<% else %>Unpublished<% end %>
-	  | <%= link_to 'Edit', edit_admin_article_path(article) %>
-      <%= link_to 'Delete', [:admin, article], :confirm => 'Are you sure?', :method => :delete %>
-	<% end %>
+	<%= link_to "Comments: #{article.comments.count}", article_path(article, anchor: "comments") %>
+	| <% if article.published? %>Published<% else %>Unpublished<% end %>
+	| <%= link_to 'Edit', edit_admin_article_path(article) %>
+	| <%= link_to 'Delete', [:admin, article], confirm: 'Are you sure?', method: :delete %>
   </p>
   <div><%= raw(article.text) %></div>
 </div>

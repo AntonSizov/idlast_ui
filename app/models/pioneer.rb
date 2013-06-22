@@ -3,8 +3,38 @@ class Pioneer
   include Mongo::Voteable
   include Mongoid::Timestamps
 
+  IDLAST_USER_NAME = 'IDLast.com'
+
   before_save :mask_id
   belongs_to :user
+
+  scope :pending, where(approved: false)
+  scope :approved, where(approved: true)
+  scope :sorted_by_img_id, order_by(img_id: -1)
+
+  scope :approved_sorted_by_img_id, approved.sorted_by_img_id
+
+  scope :vectors, where(type: 'vector')
+  scope :approved_vectors, vectors.approved
+  scope :approved_vectors_sorted_by_img_id, approved_vectors.sorted_by_img_id
+
+  scope :illustrations, where(type: 'illustration')
+  scope :approved_illustrations, illustrations.approved
+  scope :approved_illustrations_sorted_by_img_id, approved_illustrations.sorted_by_img_id
+
+  scope :photos, where(type: 'photo')
+  scope :approved_photos, photos.approved
+  scope :approved_photos_sorted_by_img_id, approved_photos.sorted_by_img_id
+
+  scope :of_type, ->(type){ where(type: type) }
+  scope :approved_of_type, ->(type){ approved.of_type(type) }
+  scope :pendings_of_type, ->(type){ pending.of_type(type) }
+  scope :last_approved_of_type, ->(type){ approved_sorted_by_img_id.of_type(type).limit(1) }
+
+  scope :of_user, ->(user_id){ where(user_id: user_id) }
+
+  scope :users, where(:user_name.ne => IDLAST_USER_NAME)
+  scope :users_pending_sorted_by_created_at, users.pending.order_by(created_at: -1)
 
   attr_accessible :img_id, :type, :approved, :approved_at, :uploaded_at
 
@@ -26,24 +56,24 @@ class Pioneer
                             message: I18n.t(:img_id_validation)
   validates_uniqueness_of :img_id
 
-  voteable self, :up => +1, :down => -1
-  voteable User, :up => +1, :down => -1
+  voteable self, up: +1, down: -1
+  voteable User, up: +1, down: -1
 
   def masked_id
-    self.img_id.to_s[0...-3] << "***"
+    self.img_id.to_s[0...-3] << '***'
   end
 
   def predict_approved_at
     return nil if self.type != 'vector'
 
     # this method implements simple y=kx+b expression
-    last = Pioneer.where(approved: true, type: 'vector').order_by(img_id:-1).limit(1).to_a
-    x1 = last[0].img_id
-    y1 = last[0].approved_at.to_i
+    last = Pioneer.approved_vectors_sorted_by_img_id.first
+    x1 = last.img_id
+    y1 = last.approved_at.to_i
 
-    first = Pioneer.where(approved: true, type: 'vector').order_by(img_id:-1).limit(1).skip(400).to_a
-    x2 = first[0].img_id
-    y2 = first[0].approved_at.to_i
+    first = Pioneer.approved_vectors_sorted_by_img_id.skip(400).first
+    x2 = first.img_id
+    y2 = first.approved_at.to_i
 
     k = (y2 - y1).to_f / (x2 - x1).to_f
     b = y1 - k * x1
@@ -54,7 +84,7 @@ class Pioneer
   end
 
   def uploaded_at_formatted
-    return I18n.t(:unavailable) if self.user_name == 'IDLast.com'
+    return I18n.t(:unavailable) if self.user_name == IDLAST_USER_NAME
     self.uploaded_at.to_s(:pioneer_datetime)
   end
 
@@ -67,7 +97,7 @@ class Pioneer
   end
 
   def on_the_road
-    return I18n.t(:unavailable) if self.user_name == 'IDLast.com'
+    return I18n.t(:unavailable) if self.user_name == IDLAST_USER_NAME
     return I18n.t(:unavailable) if !self.approved
     substraction = self.approved_at - self.uploaded_at
     return I18n.t(:unavailable) if substraction <= 0
@@ -76,14 +106,14 @@ class Pioneer
   end
 
   def works_before_approval
-    last_approved = Pioneer.where(approved: true, type: self.type).order_by(img_id: -1).limit(1)
-    return self.img_id - last_approved[0].img_id
+    last_approved = Pioneer.last_approved_of_type(self.type).first
+    return self.img_id - last_approved.img_id
   end
 
   def probably_approved?
     return false if self.approved
-    last_approved = Pioneer.where(approved: true, type: self.type).order_by(img_id: -1).limit(1)
-    return true if self.img_id < last_approved[0].img_id
+    last_approved = Pioneer.last_approved_of_type(self.type).first
+    return true if self.img_id < last_approved.img_id
     return false
   end
 
@@ -106,16 +136,13 @@ class Pioneer
   private
 
   def limit_num_of_pendings
-    pendings = Pioneer.where(:user_id => self.user_id,
-                             :approved => false,
-                             :type => self.type)
-
+    pendings = self.user.pioneers.pendings_of_type(self.type)
     for pending in pendings do
       return true if pending.id == self.id
     end
 
     if pendings.length >= 1
-      errors.add(:base, "You already has #{self.type} pending item")
+      errors.add(:base, "You already have #{self.type} pending item")
     end
 
   end
@@ -127,7 +154,7 @@ class Pioneer
   end
 
   def mask_id
-    self.img_id = (self.img_id.to_s[0...-3] + "000").to_i
+    self.img_id = (self.img_id.to_s[0...-3] + '000').to_i
   end
 
   def time_length seconds
