@@ -1,6 +1,19 @@
+<h3>
+  Approved pioneers (<%= Pioneer.approved.count %>)
+</h3>
+
 <% if @pioneers.length > 0 %>
 
-<table class="table table-striped">
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>img id</th>
+    <th>type</th>
+	<th>approved at</th>
+	<th>votes</th>
+	<th>author</th>
+	<th>action</th>
+  </tr>
+
 <% @pioneers.each do |pioneer| %>
   <tr>
 	<td>
@@ -10,11 +23,7 @@
 	  <p><%= pioneer.type %></p>
 	</td>
 	<td>
-	  <% if pioneer.approved? %>
 	  <p><%= pioneer.approved_at_formatted %></p>
-	  <% else %>
-	  <p>pending</p>
-	  <% end %>
 	</td>
 	<td>
 	  <% if pioneer.votes_point > 0 %>
@@ -26,17 +35,18 @@
 	  <% end %>
 	</td>
 	<td>
-	  <%= pioneer.user_name %>
+	  <%= link_to pioneer.user_name, admin_user_path(pioneer.user) %>
+	</td>
+	<td>
+	  <%= link_to 'Delete', [:admin, pioneer], {
+		  confirm: t(:are_you_sure),
+	      method: :delete,
+	      class: 'text-error'} %>
 	</td>
   </tr>
 <% end %>
 </table>
-<div style="margin-left:130px;">
-  <%= will_paginate @pioneers %>
-</div>
 
-<% else %>
-
-<p>There are no any pioneers. <%= link_to 'Add new pioneer', new_pioneer_path %></p>
+<%= will_paginate %>
 
 <% end %>

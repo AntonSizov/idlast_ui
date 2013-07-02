@@ -6,7 +6,7 @@ gem "mongoid", "3.0.21"
 gem 'voteable_mongo', :git => 'https://github.com/dementrock/voteable_mongo.git'
 gem "devise", "2.2.3"
 gem "will_paginate_mongoid", "1.1.0"
-gem 'bootstrap-will_paginate'
+gem 'bootstrap-will_paginate', '0.0.10', :git => 'https://github.com/AntonSizov/bootstrap-will_paginate.git'
 gem "quiet_assets", "1.0.1"
 gem "cancan", "1.6.9"
 gem 'gravatar_image_tag'

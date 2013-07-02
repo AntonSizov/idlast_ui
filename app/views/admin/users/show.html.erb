@@ -1,9 +1,16 @@
 <h3>
   <%= @user.name %>
 </h3>
-<p>
-  <b>email:</b>
-  <span><%= @user.email %></span> <span class="muted">(hidden)</span>
-</p>
 
-<br \>
+<table class="table table-striped">
+  <% @user.attributes.each do |key, value| %>
+  <tr>
+	<td>
+	  <%= key %>
+	</td>
+	<td>
+	  <%= value if !key["password"] %>
+	</td>
+  </tr>
+  <% end %>
+</table>

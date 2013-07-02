@@ -2,7 +2,7 @@ class Admin::ArticlesController < Admin::AdminController
 
   def index
     @title = "Blog"
-    @articles = Article.sorted_by_created_at.paginate(page: params[:page], per_page: 5)
+    @articles = Article.sorted_by_created_at.paginate(page: params[:page], per_page: 10)
     authorize! :index, @articles
   end
 

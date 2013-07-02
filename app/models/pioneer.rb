@@ -34,7 +34,8 @@ class Pioneer
   scope :of_user, ->(user_id){ where(user_id: user_id) }
 
   scope :users, where(:user_name.ne => IDLAST_USER_NAME)
-  scope :users_pending_sorted_by_created_at, users.pending.order_by(created_at: -1)
+  scope :users_pending, users.pending
+  scope :users_pending_sorted_by_created_at, users_pending.order_by(created_at: -1)
 
   attr_accessible :img_id, :type, :approved, :approved_at, :uploaded_at
 
@@ -85,15 +86,15 @@ class Pioneer
 
   def uploaded_at_formatted
     return I18n.t(:unavailable) if self.user_name == IDLAST_USER_NAME
-    self.uploaded_at.to_s(:pioneer_datetime)
+    self.uploaded_at.to_s(:short_datetime)
   end
 
   def approved_at_formatted
-    self.approved_at.to_s(:pioneer_datetime)
+    self.approved_at.to_s(:short_datetime)
   end
 
   def predict_approved_at_formatted
-    self.predict_approved_at.to_s(:pioneer_datetime)
+    self.predict_approved_at.to_s(:short_datetime)
   end
 
   def on_the_road

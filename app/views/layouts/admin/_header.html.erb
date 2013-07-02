@@ -7,39 +7,18 @@
         <span class="icon-bar"></span>
       </a>
       <%= link_to admin_path, class: "brand" do %>
-	  <span style="color:red;">IDLast Admin Panel</span>
+	  <span style="color:red;">Admin Panel</span>
 	  <% end %>
       <div class="container nav-collapse">
 		<ul class="nav">
-		  <%= li_link_to 'Blog', articles_path %>
+		  <%= li_link_to "Frontend", root_path %>
 		</ul> <!-- ul class nav -->
-		<% if user_signed_in? %>
+
 		<ul class="nav pull-right">
 		  <li><%= link_to "My profile", user_path(current_user) %></li>
 		  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-		<% else %>
-
-        <ul class="nav pull-right">
-
-		  <!--doesn't show signup btn at home page and at signup page -->
-		  <% if (controller_name != 'pages' && action_name != 'home') && controller_name != 'registrations' %>
-		  <li><div><%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %></div></li>
-		  <% end %>
-
-		  <!-- doesn't show divider at sigin/sigup/home pages -->
-		  <% if controller_name != 'sessions' &&
-			 controller_name != 'registrations' &&
-			 (controller_name != 'pages' && action_name != 'home') %>
-		  <li class="divider-vertical"></li>
-		  <% end %>
-
-
-		  <!-- doesn't show sigin btn at sigin page -->
-		  <% if controller_name != 'sessions' %>
-		  <li><div><%= link_to "Sign in", new_user_session_path, class: "btn" %></div></li>
-		  <% end %>
         </ul>
-		<% end %>
+
       </div><!--/.nav-collapse -->
 
     </div>

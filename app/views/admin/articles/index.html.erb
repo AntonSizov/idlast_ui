@@ -1,26 +1,33 @@
+<h3>
+  Articles (<%= Article.count %>)
+</h3>
+
 <% if @articles.length > 0 %>
 
-<table class="table table-striped">
+<table class="table table-striped table-condensed">
 <% @articles.each do |article| %>
   <tr>
-	<td>
+	<td style="width:350px;">
 	  <%= link_to article.title, admin_article_path(article) %>
 	</td>
 	<td>
-	  by <%= article.user_name %>
+	  <%= article.user_name %>
 	</td>
 	<td>
-	  <%= article.published %>
+	  <% if article.published? %>
+	    published
+	  <% else %>
+	    hidden
+	  <% end %>
 	</td>
 	<td>
-	  <%= article.created_at %>
+	  <%= article.created_at.to_s(:short_datetime) %>
 	</td>
   </tr>
 <% end %>
 </table>
-<div style="margin-left:130px;">
-  <%= will_paginate @articles %>
-</div>
+
+<%= will_paginate %>
 
 <% else %>
 

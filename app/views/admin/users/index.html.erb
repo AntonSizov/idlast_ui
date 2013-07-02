@@ -1,4 +1,8 @@
-<table class="table table-hover">
+<h3>
+  Users (<%= User.count %>)
+</h3>
+
+<table class="table table-hover table-condensed">
   <tr>
     <th>Email</th>
     <th>Username</th>
@@ -9,15 +13,19 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= link_to user.email, admin_user_path(user) %></td>
-      <td><%= user.name %></td>
-	  <td><%= user.updated_at %></td>
-	  <td><%= user.created_at %></td>
+      <td><%= link_to user.name, admin_user_path(user) %></td>
+	  <td><% if user.updated_at %>
+		<%= user.updated_at.to_s(:short_datetime) %>
+	  <% end %>
+	  </td>
+	  <td>
+		<% if user.created_at %>
+		<%= user.created_at.to_s(:short_datetime) %>
+		<% end %>
+	  </td>
     </tr>
   <% end %>
 
 </table>
-  <%= will_paginate %>
 
-<br />
-
-<%#= link_to 'New user', new_user_path %>
+<%= will_paginate %>

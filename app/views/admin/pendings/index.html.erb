@@ -1,31 +1,41 @@
-<% if @pioneers.length > 0 %>
+<h3>
+  Pending pioneers (<%= Pioneer.users_pending.count %>)
+</h3>
 
-<table class="table table-striped">
-<% @pioneers.each do |pioneer| %>
+<% if @pendings.length > 0 %>
+
+<table class="table table-striped table-condensed">
   <tr>
+    <th>img id</th>
+    <th>type</th>
+	<th>created at</th>
+	<th>author</th>
+  </tr>
+
+<% @pendings.each do |p| %>
+
+  <% if p.probably_approved? %>
+  <tr class="warning">
+  <% else %>
+  <tr>
+  <% end %>
+
 	<td>
-	  <p># <%= pioneer.img_id %></p>
+	  <p># <%= p.img_id %></p>
 	</td>
 	<td>
-	  <p><%= pioneer.type %></p>
+	  <p><%= p.type %></p>
 	</td>
 	<td>
-	  <% if pioneer.approved? %>
-	  <p><%= pioneer.approved_at_formatted %></p>
-	  <% else %>
-	  <p>pending</p>
-	  <% end %>
+	  <%= p.created_at.to_s(:short_datetime) %>
 	</td>
 	<td>
-	  <%= pioneer.created_at %>
-	</td>
-	<td>
-	  <%= pioneer.user_name %>
+	  <%= link_to p.user_name, admin_user_path(p.user) %>
 	</td>
   </tr>
 <% end %>
 </table>
-<div style="margin-left:130px;">
-  <%= will_paginate @pioneers %>
-</div>
+
+<%= will_paginate %>
+
 <% end %>
