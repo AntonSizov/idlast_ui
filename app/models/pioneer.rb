@@ -28,6 +28,7 @@ class Pioneer
 
   scope :of_type, ->(type){ where(type: type) }
   scope :approved_of_type, ->(type){ approved.of_type(type) }
+  scope :approved_of_type_sorted_by_img_id, ->(type){ of_type(type).approved_sorted_by_img_id }
   scope :pendings_of_type, ->(type){ pending.of_type(type) }
   scope :last_approved_of_type, ->(type){ approved_sorted_by_img_id.of_type(type).limit(1) }
 
@@ -49,7 +50,9 @@ class Pioneer
   field :submitted,   type: Boolean, default: false
 
   validate :limit_num_of_pendings
-  validate :uploaded_at_should_be_less_than_approved_at
+  validate :validate_img_id_relevance
+  validate :validate_uploaded_at
+  validate :validate_approved_at
 
   validates_inclusion_of :type, in: [ 'vector', 'illustration', 'photo' ],
                           message: I18n.t(:chose_proper_pioneer_type)
@@ -148,12 +151,6 @@ class Pioneer
 
   end
 
-  def uploaded_at_should_be_less_than_approved_at
-    if self.approved? and (self.approved_at < self.uploaded_at)
-      errors.add(:base, I18n.t(:uploaded_at_should_be_less_than_approved_at))
-    end
-  end
-
   def mask_id
     self.img_id = (self.img_id.to_s[0...-3] + '000').to_i
   end
@@ -166,6 +163,56 @@ class Pioneer
     minutes = (seconds / 1.minute).floor
     seconds -= minutes.minutes
     { days: days, hours: hours, minutes: minutes, seconds: seconds }
+  end
+
+  #
+  # Custom validations
+  #
+
+  def validate_img_id_relevance
+    # img_id is relevant if it is greater than 10th last approved
+    # of the same type
+    tenth = Pioneer.approved_of_type_sorted_by_img_id(self.type).skip(10).first
+    if tenth.img_id > self.img_id
+      errors.add(:img_id, I18n.t(:img_id_not_relevant))
+    end
+  end
+
+  def validate_uploaded_at
+    # uploaded_at timestamp should be presented for all users
+    # except IDLast.com user. It is the main reason
+    # why I coudn't define uploaded_at field as not nil and use
+    # before_save
+    if !self.uploaded_at
+      self.uploaded_at = Time.now # to render form properly
+      errors.add(:uploaded_at, I18n.t(:uploaded_at_should_be_presented))
+      return
+    end
+
+    # uploaded_at also should be in the past
+    if self.uploaded_at >= DateTime.now
+      errors.add(:uploaded_at, I18n.t(:uploaded_at_should_be_in_the_past))
+    end
+  end
+
+  def validate_approved_at
+    # if flag approved is true, approved_at should be presented
+    if self.approved? && !self.approved_at
+      self.approved_at = DateTime.now
+      errors.add(:approved_at, I18n.t(:approved_at_should_be_presented))
+      return
+    end
+
+    # approved_at also should be in the past
+    if self.approved? && self.approved_at && (self.approved_at >= DateTime.now)
+      errors.add(:approved_at, I18n.t(:approved_at_should_be_in_the_past))
+      return
+    end
+
+    # approved_at should be greater than uploaded_at
+    if self.approved? && self.approved_at && (self.approved_at <= self.uploaded_at)
+      errors.add(:approved_at, I18n.t(:approved_at_should_be_greater_than_uploaded_at))
+    end
   end
 
 end
