@@ -88,3 +88,4 @@ ru:
   approved_at_should_be_in_the_past: "Время принятия должно быть меньше чем текущее время"
   approved_at_should_be_greater_than_uploaded_at: "Время принятия должно быть больше времени загрузки"
   img_id_not_relevant: "ID засланца устарел. (старше чем последний в десятке принятых)"
+  idlast_email_notifications_alert: "<strong>Внимание!</strong> У нас временные проблемы с рассылкой email уведомлений."
